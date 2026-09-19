@@ -154,14 +154,14 @@ def test_speech_keyboard_entry_playback_and_phrase_workflow(qtbot):
     window._input.setText("  Trebam   pomoć ")
     window._save_item_button.click()
 
-    assert store.saved[-1].phrases == [PhraseRecord("Trebam pomoć", 0)]
+    assert store.saved[-1].phrases == [PhraseRecord("TREBAM POMOĆ", 0)]
     assert window._input.text() == "DŽ A"
 
     phrase_button = window._action_buttons[f"{SPEECH_WINDOW_ACTION_PREFIX}list:select:0"]
     qtbot.waitUntil(phrase_button.isVisible)
     phrase_button.click()
-    assert window._input.text() == "DŽ A Trebam pomoć "
-    assert store.saved[-1].phrases == [PhraseRecord("Trebam pomoć", 1)]
+    assert window._input.text() == "DŽ A TREBAM POMOĆ "
+    assert store.saved[-1].phrases == [PhraseRecord("TREBAM POMOĆ", 1)]
 
 
 @pytest.mark.e2e
@@ -177,7 +177,7 @@ def test_speech_message_does_not_silently_truncate_long_saved_phrases(qtbot):
 
     window._append_phrase_to_input(long_phrase)
 
-    assert window._input.text() == f"Početak {long_phrase.strip()} "
+    assert window._input.text() == f"POČETAK {long_phrase.strip().upper()} "
 
 
 @pytest.mark.e2e
@@ -192,13 +192,17 @@ def test_speech_categories_answers_and_shared_editor_preserve_message(qtbot):
     assert window._view_mode == "categories"
     assert window._categories_button.text() == "Tastatura"
     assert window._page_label.text() == "1 / 1"
+    category_button = window._action_buttons[f"{SPEECH_WINDOW_ACTION_PREFIX}list:select:0"]
+    assert category_button.text().startswith("TREBAM\n")
     click_speech_action(qtbot, window, "list:select:0")
     assert window._view_mode == "answers"
-    assert window._view_title.text() == "Trebam"
+    assert window._view_title.text() == "TREBAM"
     assert window._back_button.isVisible()
+    answer_button = window._action_buttons[f"{SPEECH_WINDOW_ACTION_PREFIX}list:select:0"]
+    assert answer_button.text() == "TREBAM VODE"
 
     click_speech_action(qtbot, window, "list:select:0")
-    assert window._input.text() == "Moja poruka Trebam vode "
+    assert window._input.text() == "MOJA PORUKA TREBAM VODE "
 
     window._add_item_button.click()
     assert window._editor.kind == "answer"
@@ -211,8 +215,8 @@ def test_speech_categories_answers_and_shared_editor_preserve_message(qtbot):
     assert window._view_mode == "answers"
     assert window._list_page == 1
     assert window._page_label.text() == "2 / 2"
-    assert window._input.text() == "Moja poruka Trebam vode "
-    assert store.library.categories[0].answers[-1] == "Sedmi odgovor"
+    assert window._input.text() == "MOJA PORUKA TREBAM VODE "
+    assert store.library.categories[0].answers[-1] == "SEDMI ODGOVOR"
 
     window._add_item_button.click()
     window._input.setText("   ")
@@ -224,12 +228,12 @@ def test_speech_categories_answers_and_shared_editor_preserve_message(qtbot):
     window._input.setText("sedmi   odgovor")
     window._save_item_button.click()
     assert window._editor is not None
-    assert window._input.text() == "sedmi   odgovor"
+    assert window._input.text() == "SEDMI   ODGOVOR"
     assert "već postoji" in window._status_label.text()
     window._cancel_editor_button.click()
     assert window._view_mode == "answers"
     assert window._list_page == 1
-    assert window._input.text() == "Moja poruka Trebam vode "
+    assert window._input.text() == "MOJA PORUKA TREBAM VODE "
 
 
 @pytest.mark.e2e
@@ -280,22 +284,22 @@ def test_speech_add_and_cancel_category_answer_and_phrase_editors(qtbot):
     window._add_item_button.click()
     window._input.setText("Nova kategorija")
     window._save_item_button.click()
-    assert store.library.categories[-1] == CategoryRecord("Nova kategorija")
-    assert window._input.text() == "Razgovor"
+    assert store.library.categories[-1] == CategoryRecord("NOVA KATEGORIJA")
+    assert window._input.text() == "RAZGOVOR"
 
     window._add_item_button.click()
     window._input.setText("Odbačena kategorija")
     window._cancel_editor_button.click()
-    assert all(item.name != "Odbačena kategorija" for item in store.library.categories)
-    assert window._input.text() == "Razgovor"
+    assert all(item.name != "ODBAČENA KATEGORIJA" for item in store.library.categories)
+    assert window._input.text() == "RAZGOVOR"
 
     click_speech_action(qtbot, window, "list:select:0")
     window._add_item_button.click()
     window._input.setText("Odbačeni odgovor")
     window._cancel_editor_button.click()
-    assert "Odbačeni odgovor" not in store.library.categories[0].answers
+    assert "ODBAČENI ODGOVOR" not in store.library.categories[0].answers
     assert window._view_mode == "answers"
-    assert window._input.text() == "Razgovor"
+    assert window._input.text() == "RAZGOVOR"
 
     window._phrases_button.click()
     window._next_page_button.click()
@@ -303,17 +307,17 @@ def test_speech_add_and_cancel_category_answer_and_phrase_editors(qtbot):
     window._add_item_button.click()
     window._input.setText("ZZZ nova fraza")
     window._save_item_button.click()
-    assert any(item.text == "ZZZ nova fraza" for item in store.library.phrases)
+    assert any(item.text == "ZZZ NOVA FRAZA" for item in store.library.phrases)
     assert window._list_page == 1
-    assert window._input.text() == "Razgovor"
+    assert window._input.text() == "RAZGOVOR"
 
     window._add_item_button.click()
     window._input.setText("Odbačena fraza")
     window._cancel_editor_button.click()
-    assert all(item.text != "Odbačena fraza" for item in store.library.phrases)
+    assert all(item.text != "ODBAČENA FRAZA" for item in store.library.phrases)
     assert window._view_mode == "phrases"
     assert window._list_page == 1
-    assert window._input.text() == "Razgovor"
+    assert window._input.text() == "RAZGOVOR"
 
 
 @pytest.mark.e2e
@@ -371,7 +375,7 @@ def test_speech_deletion_confirmation_clear_and_save_failures(qtbot):
     window._action_buttons[f"{SPEECH_WINDOW_ACTION_PREFIX}confirm:accept"].click()
     assert window._input.text() == ""
     window._cancel_editor_button.click()
-    assert window._input.text() == "Poruka ostaje"
+    assert window._input.text() == "PORUKA OSTAJE"
 
     window._delete_mode_button.click()
     click_speech_action(qtbot, window, "list:select:0")
@@ -385,9 +389,9 @@ def test_speech_deletion_confirmation_clear_and_save_failures(qtbot):
     window._input.setText("Neuspjela fraza")
     window._save_item_button.click()
     assert window._editor is not None
-    assert window._input.text() == "Neuspjela fraza"
+    assert window._input.text() == "NEUSPJELA FRAZA"
     assert window._status_label.text() == "Spremanje nije uspjelo. Novi unos nije sačuvan."
-    assert all(item.text != "Neuspjela fraza" for item in store.library.phrases)
+    assert all(item.text != "NEUSPJELA FRAZA" for item in store.library.phrases)
 
 
 @pytest.mark.e2e
@@ -468,8 +472,8 @@ def test_speech_symbols_backspace_clear_and_play(qtbot):
 
     window._input.setText("Trebam pomoć")
     qtbot.mouseClick(window._play_button, Qt.LeftButton)
-    assert speech.requests[-1][0] == "Trebam pomoć"
-    assert window._input.text() == "Trebam pomoć"
+    assert speech.requests[-1][0] == "TREBAM POMOĆ"
+    assert window._input.text() == "TREBAM POMOĆ"
 
     qtbot.mouseClick(window._clear_button, Qt.LeftButton)
     qtbot.waitUntil(lambda: window._active_dialog is window._confirm_dialog)
@@ -477,7 +481,7 @@ def test_speech_symbols_backspace_clear_and_play(qtbot):
         window._action_buttons[f"{SPEECH_WINDOW_ACTION_PREFIX}confirm:cancel"], Qt.LeftButton
     )
     qtbot.waitUntil(lambda: window._active_dialog is None)
-    assert window._input.text() == "Trebam pomoć"
+    assert window._input.text() == "TREBAM POMOĆ"
 
     qtbot.mouseClick(window._clear_button, Qt.LeftButton)
     qtbot.waitUntil(lambda: window._active_dialog is window._confirm_dialog)
@@ -511,12 +515,12 @@ def test_speech_alarm_stops_speech_blocks_background_and_reports_failure(qtbot):
     assert window._alarm_copy.text() == "Zvučni signal se ponavlja dok ga ne zaustavite."
     space_center = window._space_button.mapToGlobal(window._space_button.rect().center())
     assert window.action_at_global_point(space_center) is None
-    assert window._input.text() == "Poruka ostaje"
+    assert window._input.text() == "PORUKA OSTAJE"
 
     window.handle_gaze_action(stop_action)
     qtbot.waitUntil(lambda: window._active_dialog is None)
     assert alarm.stop_calls >= 1
-    assert window._input.text() == "Poruka ostaje"
+    assert window._input.text() == "PORUKA OSTAJE"
 
     window.handle_gaze_action(alarm_action)
     qtbot.waitUntil(lambda: window._active_dialog is window._alarm_dialog)
@@ -564,17 +568,17 @@ def test_speech_sleep_preserves_unfinished_entry_and_supports_mouse_and_gaze(qtb
     assert speech.stop_calls == 1
     assert window._sleep_dialog.geometry() == QRect(window.mapToGlobal(QPoint(0, 0)), window.size())
     assert window._sleep_dialog.isVisible()
-    assert window._input.text() == "Nedovršena fraza"
+    assert window._input.text() == "NEDOVRŠENA FRAZA"
     assert window._editor is editor
     assert window._list_page == 1
     assert window._view_mode == "editor"
-    assert editor is not None and editor.message == "Razgovor"
+    assert editor is not None and editor.message == "RAZGOVOR"
     space_center = window._space_button.mapToGlobal(window._space_button.rect().center())
     assert window.action_at_global_point(space_center) is None
 
     qtbot.mouseClick(window._wake_button, Qt.LeftButton)
     qtbot.waitUntil(lambda: window._active_dialog is None)
-    assert window._input.text() == "Nedovršena fraza"
+    assert window._input.text() == "NEDOVRŠENA FRAZA"
     assert window._editor is editor
     assert window._list_page == 1
 
@@ -584,12 +588,12 @@ def test_speech_sleep_preserves_unfinished_entry_and_supports_mouse_and_gaze(qtb
     assert window.action_at_global_point(wake_center) == wake_action
     window.handle_gaze_action(wake_action)
     qtbot.waitUntil(lambda: window._active_dialog is None)
-    assert window._input.text() == "Nedovršena fraza"
+    assert window._input.text() == "NEDOVRŠENA FRAZA"
     assert window._editor is editor
 
 
 @pytest.mark.e2e
-def test_speech_exit_cancel_restores_state_and_confirm_requests_normal_shutdown(qtbot):
+def test_speech_exit_offers_cancel_leave_speech_and_normal_app_shutdown(qtbot):
     speech = FakeSpeech()
     alarm = FakeAlarmSound()
     window = SpeechWindow(speech, library_store=FakeLibraryStore(), alarm_sound=alarm)
@@ -609,18 +613,24 @@ def test_speech_exit_cancel_restores_state_and_confirm_requests_normal_shutdown(
     window.quit_requested.connect(lambda: quit_requests.append(True))
 
     exit_action = f"{SPEECH_WINDOW_ACTION_PREFIX}exit"
-    cancel_action = f"{SPEECH_WINDOW_ACTION_PREFIX}confirm:cancel"
-    confirm_action = f"{SPEECH_WINDOW_ACTION_PREFIX}confirm:accept"
+    cancel_action = f"{SPEECH_WINDOW_ACTION_PREFIX}exit:cancel"
+    leave_action = f"{SPEECH_WINDOW_ACTION_PREFIX}exit:leave-speech"
+    quit_action = f"{SPEECH_WINDOW_ACTION_PREFIX}exit:quit-app"
     window._action_buttons[exit_action].click()
-    qtbot.waitUntil(lambda: window._active_dialog is window._confirm_dialog)
+    qtbot.waitUntil(lambda: window._active_dialog is window._exit_dialog)
 
     cancel_button = window._action_buttons[cancel_action]
-    confirm_button = window._action_buttons[confirm_action]
+    leave_button = window._action_buttons[leave_action]
+    quit_button = window._action_buttons[quit_action]
     cancel_rect = QRect(cancel_button.mapToGlobal(QPoint(0, 0)), cancel_button.size())
-    confirm_rect = QRect(confirm_button.mapToGlobal(QPoint(0, 0)), confirm_button.size())
-    assert window._confirm_title.text() == "Izaći iz aplikacije?"
-    assert window._confirm_button.text() == "Izađi"
-    assert not cancel_rect.intersects(confirm_rect)
+    leave_rect = QRect(leave_button.mapToGlobal(QPoint(0, 0)), leave_button.size())
+    quit_rect = QRect(quit_button.mapToGlobal(QPoint(0, 0)), quit_button.size())
+    assert leave_button.text() == "Izađi"
+    assert quit_button.text() == "Ugasi aplikaciju"
+    assert all(button.height() >= 128 for button in (cancel_button, leave_button, quit_button))
+    assert not cancel_rect.intersects(leave_rect)
+    assert not cancel_rect.intersects(quit_rect)
+    assert not leave_rect.intersects(quit_rect)
     window.handle_gaze_action(cancel_action)
     qtbot.waitUntil(lambda: window._active_dialog is None)
     assert (
@@ -632,11 +642,23 @@ def test_speech_exit_cancel_restores_state_and_confirm_requests_normal_shutdown(
     assert quit_requests == []
 
     window.handle_gaze_action(exit_action)
-    qtbot.waitUntil(lambda: window._active_dialog is window._confirm_dialog)
-    qtbot.mouseClick(window._action_buttons[confirm_action], Qt.LeftButton)
+    qtbot.waitUntil(lambda: window._active_dialog is window._exit_dialog)
+    qtbot.mouseClick(leave_button, Qt.LeftButton)
+    qtbot.waitUntil(window.isHidden)
+
+    assert quit_requests == []
+    assert speech.stop_calls == 1
+    assert alarm.stop_calls >= 1
+
+    window.show_full_screen()
+    qtbot.waitUntil(window.isVisible)
+    assert window._input.text() == "PORUKA"
+    window.handle_gaze_action(exit_action)
+    qtbot.waitUntil(lambda: window._active_dialog is window._exit_dialog)
+    window.handle_gaze_action(quit_action)
 
     assert quit_requests == [True]
-    assert speech.stop_calls == 1
+    assert speech.stop_calls == 2
     assert alarm.stop_calls >= 1
 
 

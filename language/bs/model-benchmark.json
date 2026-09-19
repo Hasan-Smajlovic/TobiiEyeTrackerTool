@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "dataset": "development",
+  "selection_rule": "p95 model latency at most 50 ms; then within 0.5% of the fewest activations prefer fewer missing development words and a smaller model",
+  "environment": {
+    "platform": "macOS-27.0-arm64-arm-64bit",
+    "python": "3.10.21"
+  },
+  "preparation_seconds": 114.85,
+  "recommended_vocabulary": 60000,
+  "candidates": [
+    {
+      "requested_vocabulary": 20000,
+      "actual_vocabulary": 20001,
+      "bigrams": 105003,
+      "trigrams": 95720,
+      "compressed_bytes": 1028187,
+      "development_missing_words": [
+        "dobrovoljca",
+        "odgovorom",
+        "odmorili",
+        "opraštamo",
+        "pekmeza",
+        "plav",
+        "pokvarila",
+        "ugasite",
+        "đaci",
+        "žurio"
+      ],
+      "development_missing_word_count": 10,
+      "loading_ms": 424.13,
+      "latency": {
+        "mean_ms": 0.34,
+        "p95_ms": 1.4,
+        "max_ms": 3.96
+      },
+      "activations": 1037,
+      "activation_reduction_percent": 54.36,
+      "next_word_top_one_percent": 27.98,
+      "next_word_top_five_percent": 42.86
+    },
+    {
+      "requested_vocabulary": 40000,
+      "actual_vocabulary": 40000,
+      "bigrams": 119586,
+      "trigrams": 101656,
+      "compressed_bytes": 1224736,
+      "development_missing_words": [
+        "dobrovoljca",
+        "odmorili",
+        "opraštamo",
+        "žurio"
+      ],
+      "development_missing_word_count": 4,
+      "loading_ms": 539.81,
+      "latency": {
+        "mean_ms": 0.69,
+        "p95_ms": 2.91,
+        "max_ms": 8.49
+      },
+      "activations": 1017,
+      "activation_reduction_percent": 55.24,
+      "next_word_top_one_percent": 27.98,
+      "next_word_top_five_percent": 42.86
+    },
+    {
+      "requested_vocabulary": 60000,
+      "actual_vocabulary": 60000,
+      "bigrams": 125342,
+      "trigrams": 103788,
+      "compressed_bytes": 1348957,
+      "development_missing_words": [
+        "dobrovoljca",
+        "opraštamo",
+        "žurio"
+      ],
+      "development_missing_word_count": 3,
+      "loading_ms": 639.56,
+      "latency": {
+        "mean_ms": 1.08,
+        "p95_ms": 4.66,
+        "max_ms": 12.7
+      },
+      "activations": 1014,
+      "activation_reduction_percent": 55.37,
+      "next_word_top_one_percent": 27.98,
+      "next_word_top_five_percent": 42.86
+    }
+  ]
+}

@@ -116,6 +116,7 @@ def _existing_installation(tmp_path: Path) -> Path:
     (install_root / "logs").mkdir()
     (install_root / "data" / "app_settings.json").write_bytes(b'{"keep":true}')
     (install_root / "data" / "speech_phrases.json").write_bytes(b'["keep"]')
+    (install_root / "data" / "speech_learning.json").write_bytes(b'{"keep":"learning"}')
     (install_root / "logs" / "latest.txt").write_bytes(b"existing log\r\n")
     (install_root / "install_info.json").write_bytes(b'{"keep":"metadata"}')
     (install_root / "setup_windows.log").write_bytes(b"existing setup log\r\n")
@@ -169,6 +170,7 @@ def _persistent_snapshot(install_root: Path) -> dict[str, bytes]:
         for relative_path in (
             "data/app_settings.json",
             "data/speech_phrases.json",
+            "data/speech_learning.json",
             "logs/latest.txt",
             "install_info.json",
             "setup_windows.log",

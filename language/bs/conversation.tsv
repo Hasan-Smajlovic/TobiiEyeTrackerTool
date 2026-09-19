@@ -1,0 +1,528 @@
+category	weight	text
+greetings	3	Dobar dan.
+greetings	3	Dobro jutro.
+greetings	3	Dobro veče.
+greetings	3	Laku noć.
+greetings	3	Selam.
+greetings	3	Selam alejkum.
+greetings	3	Alejkumu selam.
+greetings	3	Kako ste danas?
+greetings	3	Kako si danas?
+greetings	3	Drago mi je što ste došli.
+greetings	3	Baš mi je drago što te vidim.
+greetings	3	Dobro došli.
+greetings	3	Izvolite, sjednite.
+greetings	3	Hvala što ste svratili.
+greetings	3	Vidimo se uskoro.
+greetings	3	Čujemo se opet malo kasnije.
+greetings	3	Sretan put.
+greetings	3	Sretan rođendan.
+greetings	3	Čestitam od srca.
+greetings	3	Sve najbolje.
+needs	7	Želim nešto reći.
+needs	7	Želim razgovarati.
+needs	7	Želim ostati ovdje.
+needs	7	Želim ići kući.
+needs	7	Želim malo odmora.
+needs	7	Želim slušati muziku.
+needs	7	Želim gledati televiziju.
+needs	7	Želim pogledati vijesti.
+needs	7	Želim pročitati poruke.
+needs	7	Želim nazvati porodicu.
+needs	7	Želim vidjeti ko je došao.
+needs	7	Želim izaći napolje.
+needs	7	Želim ući u sobu.
+needs	7	Molim te, promijeni mi položaj.
+needs	7	Želim sjesti uspravnije.
+needs	7	Želim leći.
+needs	7	Želim spavati.
+needs	7	Želim još malo sačekati.
+needs	7	Želim nešto drugo.
+needs	7	Želim biti sam.
+needs	7	Želim da ostaneš sa mnom.
+needs	10	Treba mi pomoć.
+needs	8	Treba mi telefon.
+needs	7	Treba mi punjač.
+needs	7	Treba mi daljinski upravljač.
+needs	7	Treba mi maramica.
+needs	7	Treba mi deka.
+needs	8	Treba mi jastuk.
+needs	7	Treba mi čaša.
+needs	7	Treba mi slamka.
+needs	7	Treba mi kašika.
+needs	7	Treba mi malo vremena.
+needs	7	Treba mi tišina.
+needs	7	Treba mi društvo.
+needs	7	Trebam se odmoriti.
+needs	7	Trebam završiti ovu poruku.
+needs	7	Trebam još nešto dodati.
+needs	7	Mogu li dobiti telefon?
+needs	7	Mogu li ostati ovdje?
+needs	7	Mogu li izaći napolje?
+needs	7	Mogu li sada odmoriti?
+needs	7	Možeš li mi pomoći?
+needs	7	Možete li sačekati trenutak?
+needs	7	Molim te, ostani ovdje.
+needs	7	Molim vas, priđite bliže.
+needs	7	Sačekaj da završim.
+needs	7	Sačekajte još malo.
+needs	7	Daj mi trenutak.
+needs	7	Pusti me da razmislim.
+needs	7	Nisam završio.
+needs	7	Nisam to mislio.
+needs	7	Ne želim to.
+needs	7	Ne želim sada.
+needs	7	Ne mogu trenutno.
+needs	7	Ne treba mi ništa.
+needs	7	Nemoj još ići.
+needs	7	Nemoj to pomicati.
+needs	7	Vrati to na mjesto.
+needs	7	Dodaj mi naočale.
+needs	7	Prinesi mi telefon.
+needs	7	Pomjeri sto bliže.
+needs	7	Skloni ovo sa stola.
+needs	7	Otvori vrata.
+needs	7	Zatvori vrata.
+needs	7	Upali svjetlo.
+needs	7	Ugasi svjetlo.
+needs	7	Pojačaj zvuk malo.
+needs	7	Smanji zvuk malo.
+needs	7	Promijeni kanal.
+needs	7	Vrati prethodni kanal.
+health	8	Boli me glava.
+health	8	Boli me vrat.
+health	8	Bole me leđa.
+health	8	Boli me stomak.
+health	8	Boli me ruka.
+health	8	Boli me noga.
+health	8	Boli me rame.
+health	8	Boli me grlo.
+health	8	Boli me kada se pomjerim.
+health	8	Bol je jača nego ranije.
+health	8	Bol je sada slabija.
+health	8	Osjećam pritisak u grudima.
+health	8	Teško dišem.
+health	8	Nedostaje mi zraka.
+health	8	Vrti mi se u glavi.
+health	8	Muka mi je.
+health	8	Imam temperaturu.
+health	8	Imam zimicu.
+health	8	Kašljem više nego jučer.
+health	8	Grlo mi je suho.
+health	8	Usta su mi suha.
+health	8	Nos mi je začepljen.
+health	8	Ne osjećam se dobro.
+health	8	Danas se osjećam bolje.
+health	8	Danas sam veoma umoran.
+health	8	Nisam dobro spavao.
+health	8	Ne mogu zaspati.
+health	8	Probudio sam se prerano.
+health	8	Ruka mi je utrnula.
+health	8	Noga mi je utrnula.
+health	8	Imam grč u nozi.
+health	8	Koža me svrbi.
+health	8	Ovo mjesto me peče.
+health	8	Ovdje me boli na dodir.
+health	8	Provjeri mi temperaturu.
+health	8	Izmjeri mi pritisak.
+health	8	Provjeri mi šećer.
+health	8	Donesi mi lijek.
+health	8	Je li vrijeme za lijek?
+health	8	Jesam li danas uzeo lijek?
+health	8	Molim te, nazovi doktora.
+health	8	Trebam razgovarati s doktorom.
+health	8	Trebam razgovarati s medicinskom sestrom.
+health	8	Kada je sljedeća terapija?
+health	8	Kada je sljedeća kontrola?
+health	8	Pomozi mi da se smirim.
+health	8	Treba mi dublji udah.
+health	8	Ne mogu dobro progutati.
+health	8	Teško mi je govoriti.
+health	8	Vid mi je mutan.
+health	8	Smeta mi jaka svjetlost.
+health	8	Čujem zujanje u ušima.
+health	8	Srce mi brzo kuca.
+health	8	Osjećam slabost.
+health	8	Osjećam se nesigurno.
+health	8	Danas imam više snage.
+health	8	Terapija mi je pomogla.
+health	8	Ovaj položaj pojačava bol.
+health	8	Ovaj položaj mi odgovara.
+health	8	Molim te, zapiši kada je bol počela.
+care	8	Podigni mi glavu.
+care	8	Spusti mi glavu malo.
+care	8	Podigni naslon.
+care	8	Spusti naslon.
+care	8	Pomjeri me malo lijevo.
+care	8	Pomjeri me malo desno.
+care	8	Okreni me na lijevu stranu.
+care	8	Okreni me na desnu stranu.
+care	8	Vrati me na leđa.
+care	8	Pomozi mi da sjednem.
+care	8	Pomozi mi da legnem.
+care	8	Pomozi mi da ustanem.
+care	8	Pridrži me dok se pomjeram.
+care	8	Pomjeri kolica bliže.
+care	8	Zakoči kolica.
+care	8	Otkoči kolica.
+care	8	Namjesti mi stopala.
+care	8	Podigni mi lijevu ruku.
+care	8	Podigni mi desnu ruku.
+care	8	Spusti mi ruku pažljivo.
+care	8	Ispravi mi nogu.
+care	8	Savij mi nogu malo.
+care	8	Namjesti jastuk ispod glave.
+care	8	Stavi jastuk iza leđa.
+care	8	Izvuci jastuk malo.
+care	8	Dodaj još jednu deku.
+care	8	Skloni deku s nogu.
+care	8	Pokrij mi ramena.
+care	8	Otkrij mi stopala.
+care	8	Obriši mi lice.
+care	8	Obriši mi ruke.
+care	8	Počešljaj mi kosu.
+care	8	Operi mi zube.
+care	8	Pomozi mi da operem lice.
+care	8	Treba mi presvući majicu.
+care	8	Treba mi čista odjeća.
+care	8	Ova majica mi smeta.
+care	8	Rukav mi je zategnut.
+care	8	Deka je zapela ispod mene.
+care	8	Jastuk je prenisko.
+care	8	Jastuk je previsoko.
+care	8	Stolica je predaleko.
+care	8	Približi mi tastaturu.
+care	8	Odmakni ekran malo.
+care	8	Namjesti ekran ispred mene.
+care	8	Očisti mi naočale.
+care	8	Stavi mi naočale.
+care	8	Skini mi naočale.
+care	8	Provjeri je li mi udobno.
+care	8	Radi to malo sporije.
+care	8	Budi pažljiv s mojom rukom.
+care	8	Stani na trenutak.
+care	8	Sada možeš nastaviti.
+care	8	Ovako je bolje.
+care	8	Vrati me u prethodni položaj.
+food_drink	6	Želim vode.
+food_drink	6	Želim hladne vode.
+food_drink	6	Želim toplog čaja.
+food_drink	6	Želim kafu.
+food_drink	6	Želim sok od jabuke.
+food_drink	6	Želim nešto pojesti.
+food_drink	6	Želim doručak.
+food_drink	6	Želim ručak.
+food_drink	6	Želim večeru.
+food_drink	6	Želim malo voća.
+food_drink	6	Želim supu.
+food_drink	6	Želim komad hljeba.
+food_drink	6	Želim još jedan zalogaj.
+food_drink	6	Ne želim više jesti.
+food_drink	6	Nisam gladan.
+food_drink	6	Nisam žedan.
+food_drink	6	Gladan sam.
+food_drink	6	Žedan sam.
+food_drink	6	Hrana je prevruća.
+food_drink	6	Piće je prehladno.
+food_drink	6	Ovo je preslano.
+food_drink	6	Ovo je preslatko.
+food_drink	6	Ovo mi se sviđa.
+food_drink	6	Ovo mi se ne sviđa.
+food_drink	6	Donesi mi čašu vode.
+food_drink	6	Dodaj mi šolju čaja.
+food_drink	6	Stavi čašu bliže.
+food_drink	6	Pomjeri tanjir malo.
+food_drink	6	Daj mi manji zalogaj.
+food_drink	6	Daj mi malo više vremena.
+food_drink	6	Pomozi mi da popijem vodu.
+food_drink	6	Pomozi mi da uzmem zalogaj.
+food_drink	6	Treba mi slamka za piće.
+food_drink	6	Treba mi kašika za supu.
+food_drink	6	Obriši mi usta.
+food_drink	6	Sačekaj da progutam.
+food_drink	6	Mogu li dobiti još vode?
+food_drink	6	Mogu li dobiti malo kafe?
+food_drink	6	Ima li nešto lagano za jesti?
+food_drink	6	Šta danas imamo za ručak?
+food_drink	6	Kada će biti večera?
+food_drink	6	Čaj mi baš prija.
+food_drink	6	Kafa je taman jaka.
+food_drink	6	Voda mi je dovoljno hladna.
+food_drink	6	Sačuvaj mi ostatak za kasnije.
+comfort	7	Hladno mi je.
+comfort	7	Vruće mi je.
+comfort	7	Zagušljivo mi je.
+comfort	7	Ovdje je previše bučno.
+comfort	7	Ovdje je previše tiho.
+comfort	7	Svjetlo je prejako.
+comfort	7	Svjetlo je preslabo.
+comfort	7	Sunce mi ide u oči.
+comfort	7	Propuh mi smeta.
+comfort	7	Zrak je presuh.
+comfort	7	Otvori prozor malo.
+comfort	7	Zatvori prozor do kraja.
+comfort	7	Pomjeri zavjesu.
+comfort	7	Spusti roletne.
+comfort	7	Podigni roletne.
+comfort	7	Upali ventilator.
+comfort	7	Ugasi ventilator.
+comfort	7	Pojačaj grijanje.
+comfort	7	Smanji grijanje.
+comfort	7	Podesi temperaturu malo niže.
+comfort	7	Podesi temperaturu malo više.
+comfort	7	Donesi mi topliju deku.
+comfort	7	Skloni tešku deku.
+comfort	7	Namjesti mi mekši jastuk.
+comfort	7	Ovaj jastuk je pretvrd.
+comfort	7	Krevet mi nije udoban.
+comfort	7	Naslon je previše uspravan.
+comfort	7	Naslon je previše spušten.
+comfort	7	Ekran je previše svijetao.
+comfort	7	Smanji svjetlinu ekrana.
+comfort	7	Povećaj slova na ekranu.
+comfort	7	Približi ekran malo.
+comfort	7	Smanji muziku.
+comfort	7	Pojačaj muziku.
+comfort	7	Promijeni ovu pjesmu.
+comfort	7	Pusti nešto mirnije.
+comfort	7	Treba mi nekoliko minuta odmora.
+comfort	7	Pusti me da odmorim oči.
+comfort	7	Ovako mi je udobno.
+comfort	7	Sada mi je mnogo bolje.
+conversation	3	Dobro sam.
+conversation	3	Nisam baš najbolje.
+conversation	3	Kako je prošao dan?
+conversation	3	Kako je bilo na poslu?
+conversation	3	Kako ide škola?
+conversation	3	Šta ima novo?
+conversation	3	Šta se danas desilo?
+conversation	3	Ko je zvao?
+conversation	3	Ko je pobijedio?
+conversation	3	Gdje ste bili?
+conversation	3	Kada ćete ponovo doći?
+conversation	3	Šta planirate za vikend?
+conversation	3	Kako je vrijeme napolju?
+conversation	3	Je li padala kiša?
+conversation	3	Pričaj mi o svom danu.
+conversation	3	Reci mi još nešto.
+conversation	3	Nastavi, slušam te.
+conversation	3	Ponovi posljednju rečenicu.
+conversation	3	Govori malo sporije.
+conversation	3	Nisam dobro čuo.
+conversation	3	Nisam razumio pitanje.
+conversation	3	Sada razumijem.
+conversation	3	To je zanimljivo.
+conversation	3	To nisam znao.
+conversation	3	Baš lijepa vijest.
+conversation	3	Žao mi je to čuti.
+conversation	3	Drago mi je zbog tebe.
+conversation	3	Hvala što si mi rekao.
+conversation	3	Hvala za razgovor.
+conversation	3	Lijepo je razgovarati s tobom.
+conversation	3	Možemo li promijeniti temu?
+conversation	3	Imam još jedno pitanje.
+conversation	3	Odgovorit ću za trenutak.
+conversation	3	Daj mi vremena da napišem odgovor.
+conversation	3	Da, slažem se.
+conversation	3	Ne, ne slažem se.
+conversation	3	Možda si u pravu.
+conversation	3	Nisam siguran.
+conversation	3	Vidjet ćemo.
+conversation	3	Dogovorit ćemo se kasnije.
+conversation	3	To možemo uraditi sutra.
+conversation	3	Danas mi odgovara.
+conversation	3	Kasnije mi više odgovara.
+conversation	3	Sada je pravi trenutak.
+conversation	3	Javi mi kada budeš spreman.
+conversation	3	Čekam tvoj odgovor.
+conversation	3	Baš si me obradovao.
+conversation	3	To mi mnogo znači.
+conversation	3	Nadam se dobrim vijestima.
+conversation	3	Sve si dobro objasnio.
+family_social	3	Kako je porodica?
+family_social	3	Kako su djeca?
+family_social	3	Kako ti je majka?
+family_social	3	Kako ti je otac?
+family_social	3	Kako ti je brat?
+family_social	3	Kako ti je sestra?
+family_social	3	Pozdravi sve kod kuće.
+family_social	3	Pošalji im moj pozdrav.
+family_social	3	Nazovi me kada stigneš.
+family_social	3	Javi da sam dobro.
+family_social	3	Reci im da mislim na njih.
+family_social	3	Volio bih ih uskoro vidjeti.
+family_social	3	Kada će djeca doći?
+family_social	3	Ko danas dolazi u posjetu?
+family_social	3	Hoće li neko svratiti večeras?
+family_social	3	Baš mi nedostaje porodica.
+family_social	3	Nedostaje mi naš razgovor.
+family_social	3	Drago mi je što smo zajedno.
+family_social	3	Hvala ti što si uz mene.
+family_social	3	Mnogo mi pomaže tvoje društvo.
+family_social	3	Nemoj brinuti za mene.
+family_social	3	Čuvaj se na putu.
+family_social	3	Sretno na ispitu.
+family_social	3	Sretno na novom poslu.
+family_social	3	Želim ti brz oporavak.
+family_social	3	Baš mi je drago zbog tih lijepih vijesti.
+family_social	3	Kako je prošla proslava?
+family_social	3	Pokaži mi nove fotografije.
+family_social	3	Pročitaj mi poruku naglas.
+family_social	3	Odgovori da ću se javiti kasnije.
+family_social	3	Reci da mogu doći.
+family_social	3	Reci da danas ne mogu.
+family_social	3	Podsjeti me da nazovem prijatelja.
+family_social	3	Volio bih upoznati tvoje prijatelje.
+family_social	3	Lijepo je imati dobre komšije.
+opinions	2	Mislim da je to dobra ideja.
+opinions	2	Mislim da možemo pokušati.
+opinions	2	Mislim da treba sačekati.
+opinions	2	Mislim da razgovor može pomoći.
+opinions	2	Po mom mišljenju, ovo je važno.
+opinions	2	Po mom mišljenju, treba biti strpljiv.
+opinions	2	Slažem se s tobom.
+opinions	2	Ne slažem se s tim.
+opinions	2	Ja to vidim drugačije.
+opinions	2	Volio bih čuti drugo mišljenje.
+opinions	2	Važno mi je šta ti misliš.
+opinions	2	Važno je saslušati ljude.
+opinions	2	Važno je imati dovoljno vremena.
+opinions	2	Najbolje je govoriti otvoreno.
+opinions	2	Ne treba donositi odluku na brzinu.
+opinions	2	Trebamo razmotriti sve mogućnosti.
+opinions	2	Ovo rješenje mi više odgovara.
+opinions	2	Prva mogućnost je jednostavnija.
+opinions	2	Druga mogućnost izgleda sigurnije.
+opinions	2	Radije bih ostao kod kuće.
+opinions	2	Radije bih izašao napolje.
+opinions	2	Više volim mirnu muziku.
+opinions	2	Ne volim kada se žuri.
+opinions	2	Volim kada je sve uredno.
+opinions	2	Ovo mi djeluje pošteno.
+opinions	2	Ovo mi ne izgleda pravedno.
+opinions	2	Svako zaslužuje poštovanje.
+opinions	2	Ljudi trebaju pomagati jedni drugima.
+opinions	2	Porodica je veoma važna.
+opinions	2	Zdravlje treba čuvati.
+opinions	2	Treba čuvati naše rijeke.
+opinions	2	Djeci treba više vremena za igru.
+opinions	2	Praktično znanje je veoma korisno.
+opinions	2	Dobro pitanje zaslužuje dobar odgovor.
+opinions	2	Nije sve tako jednostavno.
+memories	2	Sjećam se toga.
+memories	2	Sjećam se našeg prvog susreta.
+memories	2	Sjećam se tog ljetnog dana.
+memories	2	Sjećam se mirisa domaćeg hljeba.
+memories	2	Sjećam se stare kuće.
+memories	2	Sjećam se školskih dana.
+memories	2	Nekada smo često išli na selo.
+memories	2	Nekada sam znao sve komšije.
+memories	2	Nekada smo se više družili.
+memories	2	Nekada nije bilo mobilnih telefona.
+memories	2	Kao dijete volio sam snijeg.
+memories	2	Kao dijete često sam vozio bicikl.
+memories	2	Moj prvi bicikl bio je crvene boje.
+memories	2	Moja prva učiteljica bila je veoma strpljiva.
+memories	2	Ljeta smo provodili kod nane.
+memories	2	Zimi smo se okupljali oko peći.
+memories	2	Često smo igrali fudbal poslije škole.
+memories	2	Uvijek smo zajedno slavili rođendane.
+memories	2	Taj put pamtim po lijepom vremenu.
+memories	2	To su bile lijepe godine.
+memories	2	Stare fotografije bude mnogo uspomena.
+memories	2	Ova pjesma me podsjeća na mladost.
+memories	2	Taj miris me podsjetio na djetinjstvo.
+memories	2	Još pamtim njegov osmijeh.
+memories	2	Nikada nisam zaboravio taj razgovor.
+memories	2	Prije je sve izgledalo drugačije.
+memories	2	Rado se sjećam tih ljudi.
+memories	2	Imali smo malo, ali smo bili zadovoljni.
+memories	2	Putovali smo vozom do mora.
+memories	2	Vratili smo se kući dok je padao snijeg.
+humour	2	Šalim se.
+humour	2	Samo se malo šalim.
+humour	2	Nemoj se ljutiti, bila je šala.
+humour	2	To me baš nasmijalo.
+humour	2	Imaš dobar smisao za humor.
+humour	2	Dobar vic uvijek stiže na vrijeme.
+humour	2	Ovom kolaču treba hrabar dobrovoljac.
+humour	2	Izgleda da su se ključevi opet sakrili.
+humour	2	Neko je ozbiljno shvatio pauzu.
+humour	2	Ovaj put ćemo ti oprostiti rezultat.
+humour	2	Mogu dijeliti savjete cijeli dan.
+humour	2	Uvijek imaš spreman duhovit odgovor.
+humour	2	Kako uspiješ zagorjeti čak i čaj?
+humour	2	Moj sat kasni samo kada žurim.
+humour	2	Frižider opet krije najbolje zalogaje.
+humour	2	Daljinski upravljač ima svoje planove.
+humour	2	Ova stolica zna sve naše priče.
+humour	2	Kafa je očigledno zaboravila biti jaka.
+humour	2	Vrijeme leti, a ja nisam kupio kartu.
+humour	2	Dobro je, barem se imamo čemu smijati.
+humour	2	Hajde da čujem još jedan vic.
+humour	2	To je bilo toliko loše da je dobro.
+humour	2	Sačuvaj tu šalu za goste.
+humour	2	Ne brini, pravit ćemo se da nismo vidjeli.
+humour	2	Smijeh nam danas baš treba.
+emergency	10	Odmah mi treba pomoć.
+emergency	10	Pozovi hitnu pomoć.
+emergency	10	Nazovi doktora odmah.
+emergency	10	Ne mogu disati.
+emergency	10	Gušim se.
+emergency	10	Imam jak bol u grudima.
+emergency	10	Srce mi lupa veoma brzo.
+emergency	10	Ne osjećam lijevu ruku.
+emergency	10	Ne osjećam desnu nogu.
+emergency	10	Ne mogu govoriti.
+emergency	10	Ne vidim dobro.
+emergency	10	Vrti mi se i past ću.
+emergency	10	Mislim da ću se onesvijestiti.
+emergency	10	Pao sam.
+emergency	10	Povrijedio sam se.
+emergency	10	Krvarim.
+emergency	10	Opekao sam se.
+emergency	10	Ne mogu se pomjeriti.
+emergency	10	Ne ostavljaj me samog.
+emergency	10	Ostani sa mnom.
+emergency	10	Otključaj vrata.
+emergency	10	Pozovi nekoga iz porodice.
+emergency	10	Donesi moj telefon odmah.
+emergency	10	Zaustavi kolica.
+emergency	10	Skloni me od opasnosti.
+emergency	10	Isključi uređaj odmah.
+emergency	10	Osjećam miris dima.
+emergency	10	Nešto gori.
+emergency	10	Voda je prevruća.
+emergency	10	Lijek mi je izazvao reakciju.
+emergency	10	Ne mogu progutati lijek.
+emergency	10	Pritisni dugme za pomoć.
+emergency	10	Reci im gdje se nalazim.
+emergency	10	Govori polako i ostani miran.
+emergency	10	Sada sam na sigurnom.
+needs	10	Treba mi vode.
+needs	7	Želim čaj.
+needs	7	Želim odmoriti.
+needs	7	Želim biti ovdje.
+needs	7	Trebam nešto pojesti.
+needs	7	Donesi vode.
+needs	7	Donesi čašu.
+needs	7	Dođi bliže.
+care	8	Pomjeri jastuk.
+care	8	Spusti malo.
+comfort	7	Otvori prozor.
+comfort	7	Zatvori prozor.
+health	8	Nisam dobro.
+health	8	Loše mi je.
+health	8	Umoran sam.
+conversation	4	Ne razumijem.
+conversation	4	Možete li ponoviti?
+conversation	4	Sačekaj malo.
+conversation	4	Sačekajte malo.
+conversation	3	Nije mi jasno.
+conversation	3	Nije tako.
+conversation	3	Možeš li doći?
+conversation	3	Možemo razgovarati.
+conversation	3	Šta se desilo?
+conversation	3	Kako je na poslu?
+conversation	3	Kada ćete doći?
+conversation	3	Volio bih otići vani.

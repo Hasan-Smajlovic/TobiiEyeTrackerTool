@@ -135,7 +135,8 @@ dist\PogledAssist-v<version>-windows-x64.zip
 ```
 
 No physical tracker, Tobii runtime, eSpeak NG, or network speech service is used
-by the package smoke test.
+by the package smoke test. It also verifies the bundled Bosnian model checksum
+and computes a word completion from that model.
 
 ## Automated release
 
@@ -172,13 +173,23 @@ Software-only checks on a clean Windows x64 environment:
   matches the latest stable release.
 - Confirm a deliberately invalid checksum leaves the older version unchanged.
 - Confirm an installed smoke-test failure restores the older version.
-- Confirm `data`, `logs`, `install_info.json`, and existing root logs other than
-  the appended `update_windows.log` are byte-for-byte unchanged after update and
-  rollback tests.
+- Confirm `data`, including `speech_learning.json`, `logs`, `install_info.json`,
+  and existing root logs other than the appended `update_windows.log` are
+  byte-for-byte unchanged after update and rollback tests.
 - Confirm any local `.venv` speech tools and `tools` bridge components remain
   available after source-install migration and release updates.
 - Start the app from the desktop shortcut and confirm the toolbar appears.
 - Open Settings, Speech, Keyboard, and Controller.
+- Disconnect networking before first Speech use and confirm `Brzi izbor` still
+  offers starting words, completions, and next words.
+- Confirm suggestion selection and `Poništi riječ` produce the same text with
+  mouse and simulated gaze, including Bosnian letters and punctuation spacing.
+- Open a phrase or answer editor, use a suggestion, cancel, and confirm the
+  conversation and its undo state return unchanged. Repeat with a successful save.
+- Speak the same unchanged message twice, restart the app, and confirm personal
+  learning was counted once and persists in `data\speech_learning.json`.
+- Forget one learned word in Settings, restart, and confirm its personal boost
+  remains removed while the message and saved library remain unchanged.
 - Close and reopen the app and confirm settings persist under `data`.
 - Confirm logs are written under `logs` when logging is enabled.
 
@@ -210,7 +221,9 @@ installation fails.
 
 Current releases keep the full Speech library in `data\speech_library.json` and
 maintain a list-only `data\speech_phrases.json` for older releases. Do not delete
-or rename either file during rollback. An older release reads and updates the
+or rename either file during rollback. They also preserve
+`data\speech_learning.json`; older releases ignore it, and a later compatible
+release resumes using it. An older release reads and updates the
 list-only file. When a current release is installed again, it imports newer
 standalone phrase changes while retaining categories and answers from the full
 library. If saved settings from a newer version are incompatible, back up `data`,

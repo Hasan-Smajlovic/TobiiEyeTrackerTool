@@ -13,7 +13,8 @@ and a compact controller panel.
 - Left, right, and double-click modes with an optional precision zoom step.
 - A radial Quick actions menu for choosing a click at the current gaze target.
 - A visible gaze bubble and action progress overlay.
-- A full-screen Bosnian speech keyboard with reusable phrases.
+- A full-screen Bosnian speech keyboard with offline word completion and
+  next-word suggestions, reusable phrases, and local personal learning.
 - Right-side Keyboard and Controller panels for typing and common shortcuts.
 - Gaze-selectable settings for timing, smoothing, speech, startup, and logging.
 - Tobii Pro SDK, Stream Engine, and optional 32-bit Stream Engine bridge support.
@@ -116,6 +117,7 @@ the [development guide](docs/DEVELOPMENT.md).
 | --- | --- |
 | Use and troubleshoot the application | [User guide](docs/USER_GUIDE.md) |
 | Understand the runtime and compatibility baseline | [Architecture](docs/ARCHITECTURE.md) |
+| Understand Bosnian word completion, prediction, and its verification | [Speech suggestions](docs/SPEECH_SUGGESTIONS.md) |
 | Set up development and run checks | [Development guide](docs/DEVELOPMENT.md) |
 | Prepare issues, pull requests, reviews, and merges | [Contributing](CONTRIBUTING.md) |
 | Build, install, validate, or roll back a release | [Windows release guide](docs/WINDOWS_RELEASE.md) |
@@ -156,6 +158,7 @@ preserve it:
 data\app_settings.json
 data\speech_library.json
 data\speech_phrases.json
+data\speech_learning.json
 logs\latest.txt
 ```
 

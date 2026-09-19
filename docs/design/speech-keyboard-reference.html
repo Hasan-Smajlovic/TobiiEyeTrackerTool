@@ -108,7 +108,15 @@
     #message::placeholder { color: #a0adbf; font-size: .8em; }
     .section-label { margin: 0; color: #bac5d4; font-size: 14px; font-weight: 500; }
     .predictions { display: grid; gap: 7px; }
-    .prediction-row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--gap); }
+    .prediction-controls { display: flex; gap: var(--gap); }
+    .prediction-row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--gap); flex: 1; min-width: 0; }
+    .prediction-row button { overflow-wrap: anywhere; }
+    #undo-word { width: 170px; min-height: 66px; font-size: 20px; }
+    .learning-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .learning-grid button { min-height: 76px; overflow-wrap: anywhere; }
+    .learning-actions { display: flex; gap: 12px; align-items: center; }
+    .learning-actions button { min-height: 68px; flex: 1; }
+    .learning-hint { color: #bac5d4; line-height: 1.5; }
     .word { min-height: 78px; border-color: #366c8d; background: #173447; color: #dff4ff; }
     .word:hover { background: #24516c; }
     .workspace { display: grid; grid-template-columns: minmax(0, 3fr) clamp(280px, 25%, 480px); gap: var(--gap); min-height: 0; }
@@ -145,70 +153,77 @@
     .letter-grid button { min-height: 120px; font-size: 38px; }
     .letter-grid .back { font-size: 22px; }
     .dialog-copy { margin: 0 0 32px; color: #dce6f3; font-size: 22px; line-height: 1.5; overflow-wrap: anywhere; }
-    #confirm-dialog, #alarm-dialog { display: none; height: min(460px, calc(100dvh - 64px)); }
-    #confirm-dialog[open], #alarm-dialog[open] { display: flex; flex-direction: column; }
+    #confirm-dialog, #exit-dialog, #alarm-dialog { display: none; height: min(460px, calc(100dvh - 64px)); }
+    #confirm-dialog[open], #exit-dialog[open], #alarm-dialog[open] { display: flex; flex-direction: column; }
     .confirm-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: auto; }
+    .exit-actions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .confirm-actions button { min-height: 128px; font-size: 22px; }
     #alarm-dialog [data-action="stop-alarm"] { min-height: 140px; margin-top: auto; font-size: 22px; }
-    #sleep-screen, #closed-screen { position: fixed; inset: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; border-radius: 0; background: #000; }
-    #sleep-screen[open], #closed-screen[open] { display: grid; place-items: center; }
+    #sleep-screen, #speech-closed-screen, #closed-screen { position: fixed; inset: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; border-radius: 0; background: #000; }
+    #sleep-screen[open], #speech-closed-screen[open], #closed-screen[open] { display: grid; place-items: center; }
     #wake { position: absolute; bottom: 8vh; width: min(420px, 70vw); min-height: 140px; background: #08090b; border-color: #2b3038; color: #7f8794; font-size: 28px; }
     #wake:hover { background: #111318; border-color: #657084; color: #bac5d4; }
-    #closed-screen .closed-content { text-align: center; padding: 24px; }
-    #closed-screen button { width: min(420px, 80vw); }
+    #speech-closed-screen .closed-content, #closed-screen .closed-content { text-align: center; padding: 24px; }
+    #speech-closed-screen button, #closed-screen button { width: min(420px, 80vw); }
     #gaze-ring { position: fixed; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%; pointer-events: none; z-index: 100; background: conic-gradient(#f7d85a var(--progress, 0deg), #f7d85a33 0); mask: radial-gradient(transparent 52%, #000 56%); }
     button.gaze-target { border-color: #f7d85a; box-shadow: inset 0 0 0 2px #f7d85a; }
     .settings-screen {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 18px;
       min-height: 680px;
       height: calc(100vh - 24px);
       height: calc(100dvh - 24px);
       max-width: 2200px;
       margin: 0 auto;
-      padding: 18px 22px 22px;
-      background: #151515;
+      padding: 20px 24px 24px;
+      background: #111312;
       color: #f4f1ea;
     }
     .settings-screen button {
       min-height: 58px;
       padding: 10px 14px;
-      border-color: #494f4b;
-      background: #2b2d2b;
+      border-color: #414742;
+      border-radius: 10px;
+      background: #272a28;
       color: #f5f3ef;
       font-size: 15px;
     }
-    .settings-screen button:hover { background: #363936; border-color: #69736d; }
+    .settings-screen button:hover { background: #323633; border-color: #69736d; }
     .settings-screen button[aria-pressed="true"], .settings-screen .settings-primary {
       border-color: #74d3c6;
       background: #1d6f68;
       color: #fff;
     }
-    .settings-topbar { display: flex; align-items: center; gap: 14px; }
+    .settings-topbar { display: flex; align-items: center; gap: 16px; }
     .settings-topbar h1 { flex: 1; margin: 0; font-size: 25px; font-weight: 650; }
     .settings-status { min-width: 360px; margin: 0; color: #b8c5c0; font-size: 14px; text-align: right; }
-    .settings-danger { background: #4b2224 !important; border-color: #7d383e !important; }
-    .settings-body { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 16px; flex: 1; min-height: 0; }
-    .settings-panel { border: 1px solid #343a36; border-radius: 8px; background: #1e1f1e; }
-    .settings-nav { display: flex; flex-direction: column; gap: 10px; padding: 12px; }
-    .settings-nav button { min-height: 74px; }
-    .settings-page { display: flex; flex-direction: column; gap: 14px; padding: 20px; }
-    .settings-page-header { display: flex; align-items: center; gap: 12px; }
-    .settings-page-header h2 { flex: 1; margin: 0; color: #fff; font-size: 22px; font-weight: 650; }
-    .settings-options { display: grid; gap: 12px; }
+    .settings-danger { background: #492326 !important; border-color: #804047 !important; }
+    .settings-body { display: grid; grid-template-columns: 264px minmax(0, 1fr); gap: 18px; flex: 1; min-height: 0; }
+    .settings-panel { border: 1px solid #343a36; border-radius: 14px; background: #191c1a; }
+    .settings-nav { display: flex; flex-direction: column; gap: 10px; padding: 14px; }
+    .settings-nav-label { margin: 4px 8px 2px; color: #8fa099; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .settings-nav button { justify-content: flex-start; min-height: 72px; text-align: left; }
+    .settings-nav-note { margin: auto 8px 6px; color: #8fa099; font-size: 13px; line-height: 1.45; }
+    .settings-page { display: flex; flex-direction: column; gap: 14px; padding: 22px; }
+    .settings-page-header { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 4px 16px; }
+    .settings-page-header h2 { margin: 0; color: #fff; font-size: 24px; font-weight: 650; }
+    .settings-page-header p { margin: 0; color: #aeb9b3; font-size: 14px; }
+    .settings-page-header button { grid-column: 2; grid-row: 1 / span 2; }
+    .settings-group-label { margin: 4px 2px 0; color: #8fa099; font-size: 12px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+    .settings-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
     .settings-checkbox {
       display: flex;
       align-items: center;
       gap: 14px;
       min-height: 66px;
-      width: min(520px, 100%);
+      width: auto;
       padding: 14px 18px;
       border: 1px solid #3a403c;
-      border-radius: 8px;
-      background: #242624;
+      border-radius: 10px;
+      background: #222522;
       color: #f5f3ef;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
     }
     .settings-checkbox input { width: 28px; height: 28px; accent-color: #1d6f68; }
@@ -219,14 +234,31 @@
       gap: 12px;
       padding: 14px 16px;
       border: 1px solid #3a403c;
-      border-radius: 8px;
-      background: #242624;
+      border-radius: 10px;
+      background: #222522;
     }
     .update-copy h3 { margin: 0 0 6px; color: #fff; font-size: 17px; font-weight: 600; }
     .update-copy p { margin: 0; color: #d8d3c8; font-size: 15px; }
     .update-card button { min-height: 64px; }
     .update-card [data-settings-action="check-update"] { min-width: 210px; }
     .update-card [data-settings-action="install-update"] { min-width: 250px; }
+    .setting-row {
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) 112px 160px 112px;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1px solid #3a403c;
+      border-radius: 10px;
+      background: #222522;
+    }
+    .setting-copy h3 { margin: 0 0 5px; color: #fff; font-size: 17px; font-weight: 600; }
+    .setting-copy p { margin: 0; color: #b9b2a5; font-size: 13px; }
+    .setting-value { display: grid; place-items: center; min-height: 58px; border: 1px solid #3a3d3b; border-radius: 10px; background: #0f1110; color: #fff; font-size: 22px; font-weight: 650; }
+    .settings-action-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .settings-action-grid button, .settings-action-grid .settings-checkbox { width: 100%; min-height: 64px; }
+    .settings-action-grid .wide { grid-column: 2 / -1; }
+    .speech-actions { display: grid; grid-template-columns: repeat(2, minmax(210px, 280px)); gap: 12px; }
     @media (max-height: 760px) and (min-width: 901px) {
       body { padding: 8px; }
       .speech-screen { height: calc(100dvh - 16px); min-height: 620px; grid-template-rows: 80px auto minmax(288px, 1fr) 76px; padding: 10px; gap: 10px; }
@@ -249,10 +281,12 @@
       .view-header button { flex: 1; }
       .settings-screen { height: auto; min-height: calc(100dvh - 16px); padding: 14px; }
       .settings-status { min-width: 0; }
-      .settings-body { grid-template-columns: 210px minmax(0, 1fr); }
+      .settings-body { grid-template-columns: 220px minmax(0, 1fr); }
       .settings-nav { padding: 10px; }
+      .settings-options { grid-template-columns: 1fr; }
       .update-card { grid-template-columns: 1fr; }
       .update-card button { width: 100%; }
+      .setting-row { grid-template-columns: minmax(220px, 1fr) 104px 145px 104px; }
     }
     @media (max-width: 560px) {
       :root { --gap: 8px; }
@@ -279,8 +313,13 @@
       .settings-status { flex: 1; text-align: left; }
       .settings-body { display: flex; flex-direction: column; }
       .settings-nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .settings-nav-label, .settings-nav-note { display: none; }
       .settings-nav button { min-height: 62px; padding: 8px; font-size: 13px; }
       .settings-page { padding: 14px; }
+      .setting-row { grid-template-columns: 1fr 1fr 1fr; }
+      .setting-copy { grid-column: 1 / -1; }
+      .settings-action-grid, .speech-actions { grid-template-columns: 1fr; }
+      .settings-action-grid .wide { grid-column: auto; }
     }
   </style>
 </head>
@@ -298,14 +337,17 @@
           <label id="message-label" for="message">Vaša poruka</label>
           <span id="status" role="status" aria-live="polite"></span>
         </div>
-        <input id="message" type="text" autocomplete="off" spellcheck="false" placeholder="Odaberite grupu slova…">
+        <input id="message" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Odaberite grupu slova…">
       </div>
       <button class="primary" type="button" data-action="speak">Izgovori</button>
       <button id="phrases-toggle" type="button" data-action="phrases" aria-pressed="false">Fraze</button>
     </header>
     <section class="predictions" aria-label="Ponuđene riječi">
       <h2 class="section-label">Brzi izbor</h2>
-      <div id="predictions" class="prediction-row"></div>
+      <div class="prediction-controls">
+        <div id="predictions" class="prediction-row"></div>
+        <button id="undo-word" type="button" data-action="undo-word" disabled>Poništi riječ</button>
+      </div>
     </section>
     <div class="workspace">
       <section class="main-panel" aria-labelledby="view-title">
@@ -328,7 +370,7 @@
         <h2 class="section-label">Kontrole</h2>
         <button class="danger" type="button" data-action="alarm">Alarm<small>Pozovi pomoć</small></button>
         <button class="sleep" type="button" data-action="sleep">Sleep<small>Odmori oči</small></button>
-        <button type="button" data-action="exit">Izlaz<small>Zatvori aplikaciju</small></button>
+        <button type="button" data-action="exit">Izlaz<small>Izađi ili ugasi aplikaciju</small></button>
       </aside>
     </div>
     <div class="utility-row">
@@ -339,26 +381,31 @@
   </main>
   <main id="settings-screen" class="settings-screen" aria-label="Pogled Assist postavke" hidden>
     <header class="settings-topbar">
-      <button class="settings-danger" type="button">✕&nbsp;&nbsp;Zatvori</button>
       <h1>Postavke</h1>
       <p id="settings-status" class="settings-status" role="status" aria-live="polite">Spremno</p>
+      <button class="settings-danger" type="button">✕&nbsp;&nbsp;Zatvori</button>
     </header>
     <div class="settings-body">
       <nav class="settings-nav settings-panel" aria-label="Grupe postavki">
-        <button type="button" aria-pressed="true">Opće postavke</button>
-        <button type="button" aria-pressed="false">Postavke pogleda</button>
-        <button type="button" aria-pressed="false">Postavke govora</button>
+        <p class="settings-nav-label">Kategorije</p>
+        <button type="button" data-settings-action="general-settings" aria-pressed="true">Opće postavke</button>
+        <button type="button" data-settings-action="gaze-settings" aria-pressed="false">Postavke pogleda</button>
+        <button type="button" data-settings-action="speech-settings" aria-pressed="false">Postavke govora</button>
+        <p class="settings-nav-note">Promjene se primjenjuju i čuvaju automatski.</p>
       </nav>
-      <section class="settings-page settings-panel" aria-labelledby="general-settings-title">
+      <section id="general-settings" class="settings-page settings-panel" aria-labelledby="general-settings-title">
         <header class="settings-page-header">
           <h2 id="general-settings-title">Opće postavke</h2>
+          <p>Pokretanje, zapisivanje i ažuriranje aplikacije.</p>
           <button class="settings-danger" type="button">Isključi aplikaciju</button>
         </header>
+        <p class="settings-group-label">Pokretanje i dijagnostika</p>
         <div class="settings-options">
-          <label class="settings-checkbox"><input type="checkbox">Pokreni uz Windows kao administrator</label>
+          <label class="settings-checkbox"><input type="checkbox">Pokreni uz Windows (administrator)</label>
           <label class="settings-checkbox"><input type="checkbox">Uključi zapisivanje</label>
-          <label class="settings-checkbox"><input type="checkbox">Prikaži PowerShell prozor pri pokretanju</label>
+          <label class="settings-checkbox"><input type="checkbox">Prikaži PowerShell pri pokretanju</label>
         </div>
+        <p class="settings-group-label">Verzija aplikacije</p>
         <section class="update-card" aria-labelledby="update-title">
           <div class="update-copy">
             <h3 id="update-title">Ažuriranja</h3>
@@ -367,6 +414,48 @@
           <button type="button" data-settings-action="check-update">↻&nbsp;&nbsp;Provjeri ažuriranja</button>
           <button class="settings-primary" type="button" data-settings-action="install-update" hidden>↓&nbsp;&nbsp;Ažuriraj na v0.2.0</button>
         </section>
+      </section>
+      <section id="gaze-settings" class="settings-page settings-panel" hidden>
+        <header class="settings-page-header">
+          <h2>Postavke pogleda</h2>
+          <p>Podesite brzinu, stabilnost i povratnu informaciju pogleda.</p>
+        </header>
+        <div class="setting-row"><div class="setting-copy"><h3>Pauza prije odabira</h3><p>Vrijeme čekanja prije nego što se krug napretka počne puniti.</p></div><button>−&nbsp; Manje</button><strong class="setting-value">500 ms</strong><button>+&nbsp; Više</button></div>
+        <div class="setting-row"><div class="setting-copy"><h3>Vrijeme zadržavanja pogleda</h3><p>Vrijeme punjenja kruga napretka nakon početne pauze.</p></div><button>−&nbsp; Manje</button><strong class="setting-value">500 ms</strong><button>+&nbsp; Više</button></div>
+        <div class="setting-row"><div class="setting-copy"><h3>Radijus stabilnog pogleda</h3><p>Koliko mirno pogled mora ostati prije pokretanja odabrane radnje.</p></div><button>−&nbsp; Manje</button><strong class="setting-value">48 px</strong><button>+&nbsp; Više</button></div>
+        <div class="setting-row"><div class="setting-copy"><h3>Pauza između radnji</h3><p>Vrijeme čekanja nakon jedne radnje prije pokretanja sljedeće.</p></div><button>−&nbsp; Manje</button><strong class="setting-value">350 ms</strong><button>+&nbsp; Više</button></div>
+        <div class="setting-row"><div class="setting-copy"><h3>Uglađivanje pokazivača</h3><p>Niže vrijednosti su mirnije, a više brže prate pogled.</p></div><button>−&nbsp; Manje</button><strong class="setting-value">1.00</strong><button>+&nbsp; Više</button></div>
+        <p class="settings-group-label">Ponašanje i kalibracija</p>
+        <div class="settings-action-grid">
+          <button class="settings-primary" type="button">Pomjeraj pokazivač pogledom</button>
+          <button class="settings-primary" type="button">Prikaži oznaku pogleda</button>
+          <button class="settings-primary" type="button">Prikaži napredak radnje</button>
+          <label class="settings-checkbox"><input type="checkbox" checked>Koristi precizno uvećanje</label>
+          <button class="wide" type="button">Pokreni Tobii kalibraciju</button>
+        </div>
+      </section>
+      <section id="speech-settings" class="settings-page settings-panel" hidden>
+        <header class="settings-page-header">
+          <h2>Postavke govora</h2>
+          <p>Podesite glas i raspored tastature za komunikaciju.</p>
+        </header>
+        <div class="setting-row"><div class="setting-copy"><h3>Brzina govora</h3><p>Broj riječi u minuti koji koristi eSpeak NG.</p></div><button>−&nbsp; Manje</button><strong class="setting-value">155 riječi/min</strong><button>+&nbsp; Više</button></div>
+        <div class="setting-row"><div class="setting-copy"><h3>Broj slova u grupi</h3><p>Broj slova u svakoj grupi na ekranima za govor i tastaturu.</p></div><button>−&nbsp; Manje</button><strong class="setting-value">5</strong><button>+&nbsp; Više</button></div>
+        <section class="update-card"><div class="update-copy"><h3>Glas</h3><p>Standardni glas koristi eSpeak NG. Prirodni glas koristi Microsoft Edge bs-BA-GoranNeural.</p></div><button type="button">Standardni</button></section>
+        <p class="settings-group-label">Akcije</p>
+        <div class="speech-actions"><button class="settings-primary" type="button">▶&nbsp;&nbsp;Isprobaj govor</button><button type="button" data-settings-action="learning-settings">Naučene riječi</button></div>
+      </section>
+      <section id="learning-settings" class="settings-page settings-panel" hidden>
+        <div class="learning-actions"><h2>Naučene riječi</h2><button type="button" data-settings-action="speech-settings">Nazad</button></div>
+        <p class="learning-hint">Odaberite riječ, zatim Zaboravi riječ. Riječ iz osnovnog rječnika i dalje se može pojaviti u prijedlozima.</p>
+        <div id="learned-words" class="learning-grid"></div>
+        <p id="learning-selection" role="status">Odaberite riječ.</p>
+        <div class="learning-actions">
+          <button type="button" disabled>Prethodna</button><span>1 / 1</span><button type="button" disabled>Sljedeća</button>
+          <button id="forget-word" type="button" data-settings-action="forget-word" disabled>Zaboravi riječ</button>
+        </div>
+        <p id="learning-status" role="status" class="learning-hint">Učenje je sačuvano.</p>
+        <div class="learning-actions"><button id="retry-learning" type="button" data-settings-action="retry-learning" disabled>Pokušaj ponovo</button></div>
       </section>
     </div>
   </main>
@@ -378,19 +467,23 @@
       <ul>
         <li>Šest grupa ostaje na početnom ekranu. Grupa otvara prozor sa pet slova. Odabir jednog slova zatvara prozor i vraća grupe. Nema zasebne abecedne tastature ni stalno otvorenih slova.</li>
         <li>Kategorije su lijevo od poruke, fraze desno. Dugme prebacuje između odabrane liste i tastature. Kategorije sadrže svoje odgovore; fraze su zasebna lista.</li>
-        <li>Kategorije, njihovi odgovori i fraze mogu se dodavati i brisati. Dodavanje koristi istu grupnu tastaturu. Sačuvaj vraća listu, Odustani odbacuje novi unos. Poruka za razgovor ostaje sačuvana tokom dodavanja.</li>
+        <li>Kategorije, njihovi odgovori i fraze mogu se dodavati i brisati. Poruka i sav sadržaj kategorija, odgovora i fraza prikazuju se i unose velikim slovima. Dodavanje koristi istu grupnu tastaturu. Sačuvaj vraća listu, Odustani odbacuje novi unos. Poruka za razgovor ostaje sačuvana tokom dodavanja.</li>
         <li>Glavni sadržaj koristi približno tri četvrtine radnog prostora, dok su Alarm, Sleep i Izlaz u užoj koloni ograničenoj na 480 px. Akcije liste i stranica imaju najmanje 160 × 80 px, a modalne akcije najmanje 128 px visine.</li>
-        <li>Odabir odgovora ili fraze dodaje tekst u poruku. Izgovori pokreće čitanje. Brzi izbor nudi primjere riječi, bez Python predviđanja.</li>
-        <li>Status se prikazuje uz naslov Vaša poruka. Nema donjeg statusnog reda niti zasebnog dugmeta za zatvaranje govora; Izlaz uz potvrdu zatvara aplikaciju.</li>
+        <li>Odabir odgovora ili fraze dodaje tekst u poruku. Izgovori pokreće čitanje. Brzi izbor u ovoj HTML referenci koristi demonstracijske riječi; aplikacija koristi pripremljeni offline model.</li>
+        <li>Pet stalnih mjesta prikazuje velike bosanske riječi. Izbor dovršava započetu riječ ili dodaje narednu i razmak. Poništi riječ vraća tačan prethodni tekst jednim izborom. Novo uređivanje ukida poništavanje. Poruka se ne izgovara automatski.</li>
+        <li>Prijedlozi su neaktivni kod odabranog teksta, pomjerenog kursora i unosa naziva kategorije. U editoru fraze ili odgovora mijenjaju samo taj unos. Prazna mjesta ostaju neaktivna. Promjena riječi ispod pogleda ne dopušta ponovljeni izbor bez odlaska i povratka.</li>
+        <li>Tačka, zarez, upitnik i uzvičnik uklanjaju samo razmak koji je upravo umetnuo prijedlog. Tačka, upitnik i uzvičnik počinju novi kontekst. HTML koristi male demonstracijske liste; Python koristi pripremljeni offline model.</li>
+        <li>Status se prikazuje uz naslov Vaša poruka. Nema donjeg statusnog reda niti zasebnog dugmeta za zatvaranje govora. Izlaz nudi Odustani, Izađi iz govornog načina i Ugasi aplikaciju.</li>
         <li>Pogled prvo miruje tokom podešene pauze, zadano <strong>500 ms</strong>, bez kruga. Zatim se krug puni tokom podešenog vremena zadržavanja pogleda, zadano <strong>500 ms</strong>. Pomjeranje na drugi cilj poništava oba tajmera. Za ponavljanje istog dugmeta potrebno je skloniti pogled i vratiti ga.</li>
         <li>Alarm ponavlja zvučni signal do odabira Zaustavi alarm. Ne šalje poruke niti zove telefonski broj. Zvuk zahtijeva podršku i dozvolu preglednika.</li>
         <li>Sleep zacrni cijeli prikaz. Jedno prigušeno dugme Nastavi omogućava samostalan povratak pogledom. Poruka i unos ostaju sačuvani.</li>
-        <li>Izlaz traži potvrdu i prikazuje zatvorenu aplikaciju. HTML ne zatvara Python aplikaciju niti prozor preglednika.</li>
+        <li>Izlaz nudi tri izbora. Odustani zadržava trenutno stanje, Izađi prikazuje zatvoren govorni način, a Ugasi aplikaciju prikazuje zatvorenu aplikaciju. HTML ne zatvara Python aplikaciju niti prozor preglednika.</li>
         <li>Opće postavke automatski provjeravaju posljednje stabilno izdanje. Kada je novija verzija dostupna, prikazuje se zasebna akcija koja pokreće instalaciju i ponovno pokretanje aplikacije.</li>
         <li>Dodane stavke čuvaju se samo u ovom pregledniku, ako dozvoljava lokalno spremanje. Izgovor zavisi od instaliranih glasova. Ovo nije veza s Tobii uređajem.</li>
       </ul>
       <label><input id="gaze-demo" type="checkbox" checked> Pokazivač miša simulira pogled</label>
       <p class="muted">Za pregled klikom isključite simulaciju. Klik i fizička tastatura rade i bez čekanja.</p>
+      <label>Primjer stanja učenja <select id="learning-demo-state"><option value="saved">Sačuvano</option><option value="write">Spremanje nije uspjelo</option><option value="read">Učitavanje nije uspjelo</option><option value="empty">Nema naučenih riječi</option></select></label>
     </div>
   </details>
   <dialog id="letters-dialog" aria-labelledby="letters-title">
@@ -405,6 +498,15 @@
       <button id="confirm-button" class="danger" type="button" data-action="confirm">Potvrdi</button>
     </div>
   </dialog>
+  <dialog id="exit-dialog" aria-labelledby="exit-title" aria-describedby="exit-copy">
+    <h2 id="exit-title">Izaći iz govornog načina?</h2>
+    <p id="exit-copy" class="dialog-copy">Možete se vratiti na razgovor, izaći iz govornog načina ili ugasiti cijelu aplikaciju.</p>
+    <div class="confirm-actions exit-actions">
+      <button type="button" data-action="cancel-exit" autofocus>Odustani</button>
+      <button type="button" data-action="leave-speech">Izađi</button>
+      <button class="danger" type="button" data-action="quit-app">Ugasi aplikaciju</button>
+    </div>
+  </dialog>
   <dialog id="alarm-dialog" aria-labelledby="alarm-title" aria-describedby="alarm-copy">
     <h2 id="alarm-title">Alarm je uključen</h2>
     <p id="alarm-copy" class="dialog-copy">Zvučni signal se ponavlja dok ga ne zaustavite.</p>
@@ -412,6 +514,13 @@
   </dialog>
   <dialog id="sleep-screen" aria-label="Odmor očiju">
     <button id="wake" type="button" data-action="wake">Nastavi</button>
+  </dialog>
+  <dialog id="speech-closed-screen" aria-labelledby="speech-closed-title">
+    <div class="closed-content">
+      <h2 id="speech-closed-title">Govorni način je zatvoren</h2>
+      <p class="dialog-copy">Poruka je sačuvana za sljedeće otvaranje.</p>
+      <button type="button" data-action="reopen-speech">Ponovo otvori govor</button>
+    </div>
   </dialog>
   <dialog id="closed-screen" aria-labelledby="closed-title">
     <div class="closed-content">
@@ -430,7 +539,7 @@
         ['O', 'P', 'R', 'S', 'Š'], ['T', 'U', 'V', 'Z', 'Ž']
       ];
       const SYMBOLS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', '?'];
-      const WORDS = ['jutro', 'sam', 'hvala', 'molim', 'te', 'trebam', 'vode', 'dobro', 'donesi', 'mi', 'jastuk', 'telefon', 'sada', 'kasnije', 'želim', 'hladno', 'toplo'];
+      const WORDS = ['SELAM', 'JA', 'KAKO', 'MOŽE', 'HVALA', 'ŽELIM', 'VODU', 'VODE', 'VODA', 'RAZGOVARATI', 'ČAJ', 'ĆUP', 'DOĐI', 'DJECA', 'ĐAK', 'DŽEM', 'LJETO', 'NJIVA', 'JUTRO', 'SAM', 'MOLIM', 'TE', 'TREBAM', 'DOBRO', 'DONESI', 'MI', 'JASTUK', 'TELEFON', 'SADA', 'KASNIJE', 'HLADNO', 'TOPLO'];
       const STORE_KEY = 'pogled-assist-design-v1';
       const GAZE_PAUSE_MS = 500;
       const GAZE_FILL_MS = 500;
@@ -456,6 +565,13 @@
       let gazeFrame = 0;
       let clickFromGaze = false;
       let lastGazeClick = { target: null, time: 0 };
+      let blockedGaze = null;
+      let undoWord = null;
+      let savedUndo = null;
+      let autoSpace = false;
+      let lastText = '';
+      let learnedWords = ['ĆEVAPI', 'DŽEZ', 'KAHVA', 'LJETO', 'NJIVA', 'ŠETNJA'];
+      let selectedWord = null;
 
       render();
 
@@ -473,7 +589,16 @@
         resetGaze();
         handleAction(button.dataset.action, button.dataset.value);
       });
-      message.addEventListener('input', () => { renderPredictions(); updateSave(); });
+      message.addEventListener('input', () => {
+        if (autoSpace && message.value.length === lastText.length + 1 && message.value.startsWith(lastText) && /[.,?!]$/.test(message.value)) message.value = lastText.slice(0, -1) + message.value.slice(-1);
+        const start = message.selectionStart;
+        const end = message.selectionEnd;
+        message.value = message.value.toLocaleUpperCase('bs');
+        message.setSelectionRange(start, end);
+        undoWord = null; autoSpace = false; renderPredictions(); updateSave();
+      });
+      for (const event of ['click', 'keyup', 'select']) message.addEventListener(event, renderPredictions);
+      $('learning-demo-state').addEventListener('change', renderLearning);
       document.addEventListener('keydown', event => {
         if (event.altKey || event.ctrlKey || event.metaKey || document.querySelector('dialog[open]')) return;
         if (event.target.closest('input, summary')) return;
@@ -484,10 +609,12 @@
       });
       document.addEventListener('pointermove', event => {
         if (event.pointerType === 'touch' || !$('gaze-demo').checked) return;
-        const button = event.target.closest('button[data-action]:not(:disabled)');
+        const button = event.target.closest('button');
+        if (blockedGaze === button) return;
+        blockedGaze = null;
         if (button === gazeTarget) return;
         resetGaze();
-        if (!button) return;
+        if (!button || button.disabled) return;
         gazeTarget = button;
         gazeStart = performance.now();
         gazeFrame = requestAnimationFrame(tickGaze);
@@ -518,6 +645,26 @@
       }
 
       function handleSettingsAction(action) {
+        if (['general-settings', 'gaze-settings', 'speech-settings', 'learning-settings'].includes(action)) {
+          for (const id of ['general-settings', 'gaze-settings', 'speech-settings', 'learning-settings']) $(id).hidden = id !== action;
+          for (const button of document.querySelectorAll('.settings-nav [data-settings-action]')) button.setAttribute('aria-pressed', String(button.dataset.settingsAction === (action === 'learning-settings' ? 'speech-settings' : action)));
+          if (action === 'learning-settings') renderLearning();
+          return;
+        }
+        if (action === 'forget-word' && selectedWord) {
+          if ($('learning-demo-state').value === 'write') {
+            $('learning-status').textContent = 'Učenje nije sačuvano. Pokušajte ponovo.';
+            $('retry-learning').disabled = false;
+          } else {
+            learnedWords = learnedWords.filter(word => word !== selectedWord);
+            selectedWord = null; renderLearning();
+            $('learning-status').textContent = 'Riječ je zaboravljena. Vaša poruka je sačuvana.';
+          }
+          return;
+        }
+        if (action === 'retry-learning') {
+          $('learning-demo-state').value = 'saved'; renderLearning(); return;
+        }
         const status = $('update-status');
         const pageStatus = $('settings-status');
         const checkButton = document.querySelector('[data-settings-action="check-update"]');
@@ -534,6 +681,23 @@
         }
       }
 
+      function renderLearning() {
+        const state = $('learning-demo-state').value;
+        const available = state === 'read' || state === 'empty' ? [] : learnedWords;
+        $('learned-words').replaceChildren();
+        available.forEach(word => {
+          const button = document.createElement('button');
+          button.type = 'button'; button.textContent = word;
+          button.setAttribute('aria-pressed', String(selectedWord === word));
+          button.onclick = () => { selectedWord = word; renderLearning(); };
+          $('learned-words').append(button);
+        });
+        $('learning-selection').textContent = selectedWord ? `Odabrano: ${selectedWord}` : available.length ? 'Odaberite riječ.' : state === 'read' ? 'Naučene riječi nisu učitane.' : 'Nema naučenih riječi.';
+        $('forget-word').disabled = !available.includes(selectedWord);
+        $('learning-status').textContent = state === 'read' ? 'Datoteka nije učitana i nije promijenjena. Pokušajte ponovo.' : state === 'write' ? 'Učenje nije sačuvano. Pokušajte ponovo.' : 'Učenje je sačuvano.';
+        $('retry-learning').disabled = !['read', 'write'].includes(state);
+      }
+
       function render() {
         resetGaze();
         const browsing = view !== 'keyboard';
@@ -546,7 +710,7 @@
         $('phrases-toggle').disabled = Boolean(editor);
         $('message-label').textContent = editor ? editorTitle() : 'Vaša poruka';
         message.placeholder = editor ? 'Unesite tekst…' : 'Odaberite grupu slova…';
-        $('view-title').textContent = editor ? editorTitle() : view === 'phrases' ? 'Moje fraze' : browsing ? activeCategory?.name || 'Kategorije' : symbols ? 'Brojevi i znakovi' : 'Odaberite grupu slova';
+        $('view-title').textContent = editor ? editorTitle() : view === 'phrases' ? 'Moje fraze' : browsing ? activeCategory?.name.toLocaleUpperCase('bs') || 'Kategorije' : symbols ? 'Brojevi i znakovi' : 'Odaberite grupu slova';
         $('back').hidden = !browsing || !category;
         $('add').hidden = !browsing;
         $('add').textContent = view === 'phrases' ? 'Dodaj frazu' : category ? 'Dodaj odgovor' : 'Dodaj kategoriju';
@@ -575,6 +739,9 @@
           case 'symbol': append(value); break;
           case 'close-letters': closeDialog($('letters-dialog')); break;
           case 'word': appendWord(value, true); break;
+          case 'undo-word':
+            if (undoWord) { message.value = undoWord.text; autoSpace = undoWord.autoSpace; undoWord = null; renderPredictions(); updateSave(); }
+            break;
           case 'space': append(' '); break;
           case 'backspace': backspace(); break;
           case 'clear':
@@ -607,7 +774,11 @@
           case 'stop-alarm': stopAlarm(); break;
           case 'sleep': window.speechSynthesis?.cancel(); openDialog($('sleep-screen')); break;
           case 'wake': closeDialog($('sleep-screen')); say('Možete nastaviti.'); break;
-          case 'exit': askConfirm('Izaći iz aplikacije?', 'Za povratak na razgovor odaberite Odustani.', 'Izađi', () => { window.speechSynthesis?.cancel(); openDialog($('closed-screen')); }); break;
+          case 'exit': openDialog($('exit-dialog')); break;
+          case 'cancel-exit': closeDialog($('exit-dialog')); break;
+          case 'leave-speech': window.speechSynthesis?.cancel(); closeDialog($('exit-dialog')); openDialog($('speech-closed-screen')); break;
+          case 'quit-app': window.speechSynthesis?.cancel(); closeDialog($('exit-dialog')); openDialog($('closed-screen')); break;
+          case 'reopen-speech': closeDialog($('speech-closed-screen')); break;
           case 'reopen': closeDialog($('closed-screen')); break;
         }
       }
@@ -644,7 +815,7 @@
         page = Math.min(Math.max(page, 0), pages - 1);
         content.replaceChildren();
         for (const item of items.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE)) {
-          const button = makeButton(item.name || item.text, 'item', item.id, deleting ? 'item danger' : 'item');
+          const button = makeButton((item.name || item.text).toLocaleUpperCase('bs'), 'item', item.id, deleting ? 'item danger' : 'item');
           if (deleting || item.items) {
             const hint = document.createElement('small');
             hint.textContent = deleting ? 'Obriši' : `Odgovori: ${item.items.length}`;
@@ -690,6 +861,8 @@
       function startEditor() {
         editor = { kind: view === 'phrases' ? 'phrase' : category ? 'answer' : 'category', view, category, page };
         savedMessage = message.value;
+        savedUndo = { undoWord, autoSpace };
+        undoWord = null; autoSpace = false;
         message.value = '';
         view = 'keyboard';
         deleting = false;
@@ -704,7 +877,7 @@
 
       function finishEditor(save) {
         if (!editor) return;
-        const text = message.value.trim().replace(/\s+/g, ' ');
+        const text = message.value.trim().replace(/\s+/g, ' ').toLocaleUpperCase('bs');
         if (save && !text) { say('Prvo unesite tekst.'); return; }
         const destination = editor.kind === 'phrase' ? library.phrases : editor.kind === 'category' ? library.categories : library.categories.find(item => item.id === editor.category).items;
         if (save && destination.some(item => (item.name || item.text).toLocaleLowerCase('bs') === text.toLocaleLowerCase('bs'))) {
@@ -720,6 +893,8 @@
         category = editor.category;
         page = save ? Math.floor((destination.length - 1) / PAGE_SIZE) : editor.page;
         message.value = savedMessage;
+        undoWord = savedUndo?.undoWord || null; autoSpace = savedUndo?.autoSpace || false;
+        savedUndo = null;
         savedMessage = '';
         editor = null;
         render();
@@ -727,22 +902,27 @@
       }
 
       function append(value) {
-        message.value += value;
+        if (autoSpace && /^[.,?!]$/.test(value)) message.value = message.value.slice(0, -1);
+        undoWord = null; autoSpace = false;
+        message.value += value.toLocaleUpperCase('bs');
         message.scrollLeft = message.scrollWidth;
         renderPredictions();
         updateSave();
       }
 
       function appendWord(word, complete = false) {
+        undoWord = complete ? { text: message.value, autoSpace } : null;
         let prefix = message.value;
-        if (complete && prefix && !/\s$/.test(prefix)) prefix = prefix.replace(/\S+$/, '');
+        if (complete && prefix && !/\s$/.test(prefix)) prefix = prefix.replace(/[a-zčćđšž]+$/iu, '');
         if (prefix && !/\s$/.test(prefix)) prefix += ' ';
-        message.value = `${prefix}${word} `;
+        message.value = `${prefix}${word.toLocaleUpperCase('bs')} `;
+        autoSpace = complete;
         renderPredictions();
         updateSave();
       }
 
       function backspace() {
+        undoWord = null; autoSpace = false;
         const value = message.value;
         const end = value.slice(-2).toLocaleUpperCase('bs');
         message.value = value.slice(0, ['DŽ', 'LJ', 'NJ'].includes(end) ? -2 : -1);
@@ -750,19 +930,24 @@
         updateSave();
       }
 
-      function updateSave() { $('save').disabled = !message.value.trim(); }
+      function updateSave() { $('save').disabled = !message.value.trim(); lastText = message.value; $('undo-word').disabled = !undoWord; }
 
       function renderPredictions() {
-        const partial = /\s$/.test(message.value) ? '' : message.value.split(/\s/).pop().toLocaleLowerCase('bs');
-        const matches = partial ? WORDS.filter(word => word.startsWith(partial)) : WORDS;
-        $('predictions').replaceChildren();
+        if (gazeTarget) blockedGaze = gazeTarget;
+        resetGaze();
+        const partial = message.value.match(/[a-zčćđšž]+$/iu)?.[0].toLocaleLowerCase('bs') || '';
+        const pattern = new RegExp('^' + (partial.match(/dj|./gu) || []).map(letter => ({ dj: '(?:dj|đ)', c: '[cčć]', d: '[dđ]', s: '[sš]', z: '[zž]' }[letter] || letter)).join(''), 'iu');
+        const enabled = editor?.kind !== 'category' && message.selectionStart === message.value.length && message.selectionEnd === message.value.length && (partial || !message.value || /[\s.,?!]$/.test(message.value));
+        const matches = enabled ? (partial ? WORDS.filter(word => pattern.test(word)) : /ŽELIM\s+$/iu.test(message.value) ? ['VODU', 'RAZGOVARATI', 'ČAJ', 'KAFU', 'ODMORITI'] : WORDS) : [];
+        if (!$('predictions').children.length) for (let index = 0; index < 5; index++) $('predictions').append(makeButton('·', 'word', '', 'word'));
         for (let index = 0; index < 5; index++) {
           const word = matches[index];
-          const button = makeButton(word || '·', 'word', word || '', 'word');
+          const button = $('predictions').children[index];
+          button.textContent = word || '·'; button.dataset.value = word || '';
           button.disabled = !word;
-          if (!word) button.setAttribute('aria-label', 'Nema prijedloga');
-          $('predictions').append(button);
+          button.setAttribute('aria-label', word || 'Nema prijedloga');
         }
+        $('undo-word').disabled = !undoWord;
       }
 
       function speak() {
@@ -865,6 +1050,7 @@
         }
         if (elapsed >= GAZE_PAUSE_MS + GAZE_FILL_MS) {
           const target = gazeTarget;
+          blockedGaze = target;
           lastGazeClick = { target, time: now };
           clickFromGaze = true;
           target.click();

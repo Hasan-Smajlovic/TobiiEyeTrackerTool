@@ -66,7 +66,25 @@ Speech opens a full-screen Bosnian keyboard. Select a letter group, then a lette
 Space and Backspace stay on the bottom row. `Izgovori` sends the current text to
 the selected speech engine without clearing it. `Kategorije` contains saved groups
 of answers, while `Fraze` contains standalone reusable text. Both lists support
-adding and deleting entries with the same grouped keyboard.
+adding and deleting entries with the same grouped keyboard. The conversation
+message and all category, answer, and phrase content appear and are entered in
+uppercase. Text typed or pasted with lowercase letters is converted immediately.
+
+`Brzi izbor` shows up to five uppercase Bosnian suggestions. It completes the
+word at the end of the input or adds a next word followed by one space. The
+suggestions work without internet access, preserve the rest of the message, and
+never speak automatically. They are inactive while text is selected, the cursor
+is away from the end, or a category name is being entered.
+
+`Poništi riječ` restores the exact text from before the most recent suggestion.
+It remains available until the text is otherwise edited, even after `Izgovori`.
+If `.`, `,`, `?`, or `!` is entered immediately after a suggestion, the keyboard
+removes only the space it added and places the punctuation after the word.
+
+The same suggestions are available while adding a phrase or category answer.
+That editor has its own undo state and cannot replace the saved conversation
+message. A phrase or answer contributes to personal learning only after it is
+successfully saved. Category names are never learned.
 
 The controls on the right remain available while browsing or adding entries:
 
@@ -74,14 +92,17 @@ The controls on the right remain available while browsing or adding entries:
   `Zaustavi alarm` to silence it and return to the same Speech state.
 - `Sleep` stops speech and blacks out the display. Select `Nastavi` by gaze or
   mouse to restore the message, current list and page, and any unfinished entry.
-- `Izlaz` asks for confirmation. `Odustani` returns to the same state, while
-  `Izađi` closes the whole application through its normal shutdown path.
+- `Izlaz` offers three choices. `Odustani` returns to the same state, `Izađi`
+  closes only Speech mode while preserving the conversation message, and
+  `Ugasi aplikaciju` closes the whole application through its normal shutdown
+  path.
 
 Saved categories, answers, and phrases use UTF-8 text. Selecting an answer or
 phrase appends it to the message, and saved phrases remain ordered by usage count.
 The full library is stored in `data\speech_library.json`. The app also maintains
 `data\speech_phrases.json` so older releases can read standalone phrases during
-rollback.
+rollback. Personal word and short-context counts are stored locally in
+`data\speech_learning.json`; message transcripts are not stored.
 
 The Default voice uses eSpeak NG with the Bosnian `bs` voice. Human like uses
 `edge-playback` with `bs-BA-GoranNeural` and requires internet access.
@@ -119,7 +140,12 @@ Gaze settings controls:
 - Tobii calibration launch
 
 Speech settings controls eSpeak speed, letters per group, and the voice preset.
-Changes are saved immediately to `data\app_settings.json`.
+`Naučene riječi` opens the personal vocabulary. Select one word and then
+`Zaboravi riječ` to remove its personal ranking contribution without changing
+messages, phrases, answers, or the bundled dictionary. If learning cannot be
+read or saved, the page preserves the last file, reports the problem, and offers
+`Pokušaj ponovo` while normal typing and speech remain usable. Other settings are
+saved immediately to `data\app_settings.json`.
 
 ## Update
 
@@ -172,6 +198,7 @@ folder.
 
 ## Exit
 
-Use `Izlaz` on the Speech screen or Quit app from General settings. `Ctrl+Q`
-works while the hotbar has focus, and `Alt+F4` closes the active application
-window.
+Use `Izlaz` on the Speech screen to return to the hotbar or close the whole
+application. Quit app from General settings always closes the application.
+`Ctrl+Q` works while the hotbar has focus, and `Alt+F4` closes the active
+application window.

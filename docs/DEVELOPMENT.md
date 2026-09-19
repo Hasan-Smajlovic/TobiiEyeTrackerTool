@@ -27,7 +27,7 @@ components.
 | --- | --- | --- |
 | `.\dev.ps1 run` | Optional to start, required for real gaze checks | The real source application, tracker discovery, and Windows input |
 | `.\dev.ps1 simulate` | Not required | Mouse-driven gaze feedback, dwell timing, UI selection, and click flows |
-| `.\dev.ps1 ui` | Not required | Rendering of 12 main UI surfaces without external services |
+| `.\dev.ps1 ui` | Not required | Rendering of 19 main UI surfaces without external services |
 | `.\dev.ps1 test` | Not required | Unit, integration, and UI workflow tests with simulated inputs |
 | `.\dev.ps1 test-ui` | Not required | UI workflow and rendering tests selected by the `e2e` marker |
 | `.\dev.ps1 coverage` | Not required | Test suite, 60 percent floor, and `dist\coverage-html` report |
@@ -35,6 +35,44 @@ components.
 | `.\dev.ps1 format` | Not required | Ruff safe fixes, import ordering, and source formatting |
 | `.\dev.ps1 check` | Not required | Lint, tests, coverage, package build, and frozen executable smoke test |
 | `.\dev.ps1 package` | Not required | Clean PyInstaller build and frozen executable smoke test |
+
+Reproduce the frozen Bosnian suggestion measurements from the repository root:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\evaluate_speech_model.py --dataset development --output language\bs\evaluation-development.json
+.\.venv\Scripts\python.exe scripts\evaluate_speech_model.py --dataset heldout --output language\bs\evaluation-heldout.json
+```
+
+The development set is available for model decisions. Do not tune from the
+held-out result. The scoring contract and frozen hashes are under
+`tests\fixtures\speech_suggestions`.
+
+The original held-out messages have now been inspected in repeated reviews;
+keep their frozen text as a regression set, not a fresh blind quality estimate.
+An independently authored and reviewed set, withheld until model selection is
+complete, is still needed for that claim. Reports separate sentence starters,
+exact next-word hits before the first letter, and completion queries along the
+simulated typing path. Their percentages are not interchangeable.
+
+When changing the prepared language data, compare the supported vocabulary
+sizes in one corpus pass before rebuilding the bundled model:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\benchmark_speech_models.py .dev-tools\corpora\CLASSLA-web.bs.2.0.jsonl.gz --output-dir .dev-tools\speech-model-benchmark --report language\bs\model-benchmark.json
+.\.venv\Scripts\python.exe scripts\prepare_speech_model.py .dev-tools\corpora\CLASSLA-web.bs.2.0.jsonl.gz
+.\.venv\Scripts\python.exe scripts\compare_speech_ranking.py --output language\bs\ranking-benchmark.json
+```
+
+The ranking comparison holds language data fixed and compares the original fixed
+weights with adaptive discounts of 2, 10, and 40 on development messages only.
+It rejects latency or quality regressions and records its selection rule and
+recommendation. If changing the chosen discount, update `WordModel.context_discount`
+and rerun the vocabulary comparison before evaluating the regression set.
+
+The verified CLASSLA archive is a local development input and is not downloaded
+by setup or included in a release. Its source URL and integrity hashes are in the
+bundled model metadata. Candidate selection uses only the development set; run
+the held-out evaluation once after the model choice is fixed.
 
 Use `.\dev.ps1 check` before pushing a pull request. It runs the same three
 categories enforced by the required PR checks.
@@ -128,7 +166,7 @@ Generate the gallery:
 The command renders:
 
 - Hotbar
-- General, gaze, and speech Settings tabs
+- General, gaze, speech, and learned-word Settings surfaces
 - Speech keyboard, categories, answers, saved phrases, and shared editor
 - Keyboard letters, numpad, and symbols tabs
 - Controller general, keyboard, and settings tabs
@@ -152,6 +190,13 @@ On a normal development machine, verify:
 - Settings survive an application restart.
 - Logs appear under `logs` only when logging is enabled.
 - Closing the app removes AppBar reservations and child windows.
+- Bosnian suggestions complete a partial word and offer a next word offline.
+- Moving the caret or selecting text disables suggestions; returning to the end
+  restores them without changing the message.
+- Suggestion undo, punctuation spacing, phrase or answer editor restoration, and
+  individual learned-word removal work with mouse and simulated gaze.
+- Closing and reopening preserves `data\speech_learning.json`; a forced write
+  failure leaves the previous file intact and can be retried from Settings.
 
 On the Tobii machine, additionally verify:
 

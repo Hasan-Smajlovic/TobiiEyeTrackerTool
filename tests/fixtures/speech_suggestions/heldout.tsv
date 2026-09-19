@@ -1,0 +1,101 @@
+id	category	text
+001	needs	Molim te približi mi čašu.
+002	needs	Želim malo svježeg zraka.
+003	needs	Možeš li ugasiti svjetlo?
+004	needs	Danas bih radije pio čaj.
+005	needs	Pomjeri jastuk na drugu stranu.
+006	needs	Treba mi kratka pauza.
+007	needs	Ostavi vrata otvorena.
+008	needs	Ruke su mi hladne.
+009	needs	Sačekaj da završim poruku.
+010	needs	Nisam još spreman za spavanje.
+011	needs	Dodaj mi tanjir sa supom.
+012	needs	Pojačaj zvuk na televizoru.
+013	needs	Stavi knjigu na sto.
+014	needs	Želim promijeniti položaj.
+015	needs	Previše je toplo u sobi.
+016	needs	Pomozi mi da bolje vidim ekran.
+017	needs	Možemo li napraviti predah?
+018	needs	Sada mi više odgovara tišina.
+019	needs	Nemoj još sklanjati doručak.
+020	needs	Trebam razgovarati s tobom nasamo.
+021	conversation	Kako je prošao današnji sastanak?
+022	conversation	Drago mi je što ste opet ovdje.
+023	conversation	Šta ima novo kod komšija?
+024	conversation	Hoćemo li sutra gledati utakmicu?
+025	conversation	Pozdravi sve koji su pitali za mene.
+026	conversation	Pričaj mi kako je bilo na putu.
+027	conversation	Nisam znao da voliš planine.
+028	conversation	Ko nam dolazi u nedjelju?
+029	conversation	Meni se dopala ona priča.
+030	conversation	Danas izgledaš baš raspoloženo.
+031	conversation	Volio bih čuti i tvoje mišljenje.
+032	conversation	Jeste li stigli prije kiše?
+033	conversation	Pitaj Dženana kada počinje predstava.
+034	conversation	Čestitam na lijepim vijestima.
+035	conversation	Nadam se da ćemo se uskoro vidjeti.
+036	conversation	O čemu ste jutros razgovarali?
+037	conversation	Možeš li mi pokazati fotografije?
+038	conversation	Hvala što si našao vremena za posjetu.
+039	conversation	Neka Jasmina izabere muziku.
+040	conversation	Slušam te pažljivo iako sporije odgovaram.
+041	humour	Ova kafa može probuditi i komšiluk.
+042	humour	Ti si izgleda danas glavni kuhar.
+043	humour	Za ovakav ručak treba veći tanjir.
+044	humour	Moj sat uvijek žuri kada dođu gosti.
+045	humour	Lako je biti stručnjak poslije utakmice.
+046	humour	Opet ste pojeli najbolje kolače bez mene.
+047	humour	Ako ovako nastaviš postat ćeš pjesnik.
+048	humour	Ko posljednji stigne priča najbolji vic.
+049	humour	Nemoj mi kvariti dobar izgovor.
+050	humour	Ovaj daljinski ima više odmora nego ja.
+051	humour	Danas sam zadužen za pametne komentare.
+052	humour	Sve znaš osim gdje su ti ključevi.
+053	humour	Je li ta torta samo za gledanje?
+054	humour	Tvoj tim baš voli neizvjesne završnice.
+055	humour	Dobro je dok se još možemo šaliti.
+056	humour	Nisam ja zakasnio nego ste vi poranili.
+057	humour	Ovu raspravu možemo nastaviti poslije deserta.
+058	humour	Kad ti šutiš znam da nešto smišljaš.
+059	humour	Komšijin mačak opet vodi glavnu riječ.
+060	humour	Trebaš otvoriti školu za pravljenje pita.
+061	memories	Sjećam se naših dugih šetnji uz rijeku.
+062	memories	Nekada smo pisma čekali po nekoliko sedmica.
+063	memories	U našoj ulici svi su se poznavali.
+064	memories	Prvi posao mi je mnogo značio.
+065	memories	Ovu pjesmu sam slušao kao mladić.
+066	memories	Sjećaš li se izleta na jezero?
+067	memories	Zimi smo se sankali do mraka.
+068	memories	Najviše mi nedostaje miris stare bašče.
+069	memories	Tada se putovalo sporije ali veselije.
+070	memories	Moja učiteljica je imala mnogo strpljenja.
+071	memories	Kod bake je uvijek bilo toplog hljeba.
+072	memories	Jednom smo se izgubili na planini.
+073	memories	Na toj fotografiji sam tek završio školu.
+074	memories	I danas pamtim njegov vedar glas.
+075	memories	Stari radio je stajao pored prozora.
+076	memories	Ljeti smo dugo sjedili ispred kuće.
+077	memories	Za praznike je dolazila cijela porodica.
+078	memories	To prijateljstvo traje već mnogo godina.
+079	memories	Nikada neću zaboraviti naš prvi susret.
+080	memories	Bilo je teško ali smo pomagali jedni drugima.
+081	opinions	Mislim da trebamo saslušati obje strane.
+082	opinions	Meni je važnije poštenje nego uspjeh.
+083	opinions	Ne slažem se s tim prijedlogom.
+084	opinions	Svako zaslužuje priliku da objasni svoje razloge.
+085	opinions	Volim kada razgovor ostane miran.
+086	opinions	Nije sve bilo bolje u prošlosti.
+087	opinions	Možda bismo trebali pokušati drugačije.
+088	opinions	Dobra knjiga uvijek otvori nova pitanja.
+089	opinions	Za mene je porodica velika podrška.
+090	opinions	Lijepo je vidjeti da se ljudi pomažu.
+091	opinions	Više volim slušati nego gledati reklame.
+092	opinions	Ne treba donositi odluke u ljutnji.
+093	opinions	Važno mi je da sam odlučujem.
+094	opinions	Ovaj grad zaslužuje više zelenila.
+095	opinions	Radije bih proveo vrijeme s prijateljima.
+096	opinions	Treba cijeniti trud i kada rezultat izostane.
+097	opinions	Ne moramo imati isto mišljenje da se poštujemo.
+098	opinions	Nisam siguran da je to najbolje rješenje.
+099	opinions	Želim završit misao prije odgovora.
+100	opinions	Džez mi danas više odgovara od glasne muzike.

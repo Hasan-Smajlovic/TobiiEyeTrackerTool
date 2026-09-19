@@ -48,6 +48,7 @@ from .settings_window import SettingsWindow
 from .speech_library import speech_library_store
 from .speech_service import SpeechService
 from .speech_window import SPEECH_WINDOW_ACTION_PREFIX, SpeechWindow
+from .suggestion_service import SuggestionService
 from .tobii_calibration import launch_tobii_guest_calibration
 from .windows_input import WindowsInputController
 
@@ -91,6 +92,9 @@ class HotbarWindow(QWidget):
         self._speech.update_settings(self._initial_speech_settings)
         self._speech_library_store = speech_library_store(get_project_root())
         self._speech_library_store.load()
+        self._suggestions = SuggestionService(
+            self, path=get_project_root() / "data" / "speech_learning.json"
+        )
         self._release_update_manager = ReleaseUpdateManager(parent=self)
         self._speech_window: SpeechWindow | None = None
         self._keyboard_window: KeyboardWindow | None = None
@@ -154,6 +158,7 @@ class HotbarWindow(QWidget):
         if self._restore_button is not None:
             self._restore_button.close()
         self._speech.stop()
+        self._suggestions.close()
         self._gaze.stop()
         self._appbar.unregister()
         super().closeEvent(event)
@@ -1021,6 +1026,7 @@ class HotbarWindow(QWidget):
                 self._speech,
                 self,
                 library_store=self._speech_library_store,
+                suggestions=self._suggestions,
             )
             self._speech_window.closed.connect(
                 lambda: self._set_status("Prozor za govor je zatvoren.")
@@ -1056,6 +1062,7 @@ class HotbarWindow(QWidget):
             self._speech.settings,
             self,
             update_manager=self._release_update_manager,
+            suggestions=self._suggestions,
         )
         window.gaze_settings_changed.connect(self._update_gaze_settings)
         window.speech_settings_changed.connect(self._update_speech_settings)

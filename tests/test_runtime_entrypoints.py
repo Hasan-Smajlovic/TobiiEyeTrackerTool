@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import logging
 import sys
+from pathlib import Path
 
 import pytest
 
@@ -258,6 +259,27 @@ def test_frozen_startup_launcher_is_next_to_executable(monkeypatch, tmp_path):
     monkeypatch.setattr(windows_startup.sys, "executable", str(executable))
 
     assert windows_startup.launcher_script_path() == tmp_path / "start_gaze_mouse.ps1"
+
+
+def test_package_smoke_loads_the_bundled_suggestion_model(monkeypatch, tmp_path):
+    report = tmp_path / "smoke.txt"
+    monkeypatch.setenv(main_module.PACKAGE_SMOKE_REPORT_ENV, str(report))
+
+    assert main_module.package_smoke_test() == 0
+    contents = report.read_text(encoding="utf-8")
+    assert "suggestions_loaded=True" in contents
+    assert "bosnian-model.json.gz exists=True" in contents
+    assert "bosnian-model.meta.json exists=True" in contents
+
+
+def test_windows_package_declares_the_bundled_suggestion_files():
+    root = Path(__file__).resolve().parents[1]
+    spec = (root / "packaging" / "windows" / "PogledAssist.spec").read_text(encoding="utf-8")
+    build = (root / "scripts" / "build_windows_package.ps1").read_text(encoding="utf-8")
+
+    for name in ("bosnian-model.json.gz", "bosnian-model.meta.json"):
+        assert name in spec
+        assert name in build
 
 
 def test_main_routes_package_smoke_test_without_starting_gui(monkeypatch):

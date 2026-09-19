@@ -1,0 +1,69 @@
+{
+  "dataset": "development",
+  "dataset_sha256": "1aa3659e62e293dde6a3dfd4084aa3e313ed91fa6739a9c44775ee47f587f96f",
+  "model_sha256": "1fcd68c09860a6844ec187f91fb2759f8a4f26eb20dc939d314d7bf39acdb7f5",
+  "implementation_sha256": "8e4a552ff34b412f150ea14f66534bb1eeff7dee19a75db32275d822f3b9d44b",
+  "environment": {
+    "platform": "macOS-27.0-arm64-arm-64bit",
+    "python": "3.10.21"
+  },
+  "selection_rule": "p95 at most 50 ms and no regression from fixed weights in activations or next-word top-five hits; then fewest activations, most next-word top-five and top-one hits; ties prefer fixed weights, otherwise the larger discount for more fallback on sparse contexts",
+  "recommended": {
+    "ranking": "adaptive",
+    "context_discount": 10
+  },
+  "candidates": [
+    {
+      "ranking": "fixed",
+      "context_discount": null,
+      "activations": 1018,
+      "next_word_queries": 168,
+      "next_word_top_one_hits": 47,
+      "next_word_top_five_hits": 72,
+      "completion_selections": 120,
+      "latency": {
+        "mean_ms": 1.08,
+        "p95_ms": 4.47
+      }
+    },
+    {
+      "ranking": "adaptive",
+      "context_discount": 2,
+      "activations": 1014,
+      "next_word_queries": 168,
+      "next_word_top_one_hits": 47,
+      "next_word_top_five_hits": 72,
+      "completion_selections": 120,
+      "latency": {
+        "mean_ms": 1.07,
+        "p95_ms": 4.57
+      }
+    },
+    {
+      "ranking": "adaptive",
+      "context_discount": 10,
+      "activations": 1014,
+      "next_word_queries": 168,
+      "next_word_top_one_hits": 47,
+      "next_word_top_five_hits": 72,
+      "completion_selections": 120,
+      "latency": {
+        "mean_ms": 1.06,
+        "p95_ms": 4.6
+      }
+    },
+    {
+      "ranking": "adaptive",
+      "context_discount": 40,
+      "activations": 1022,
+      "next_word_queries": 168,
+      "next_word_top_one_hits": 44,
+      "next_word_top_five_hits": 68,
+      "completion_selections": 124,
+      "latency": {
+        "mean_ms": 1.1,
+        "p95_ms": 4.64
+      }
+    }
+  ]
+}

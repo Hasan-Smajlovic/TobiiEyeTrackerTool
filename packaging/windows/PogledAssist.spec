@@ -9,6 +9,14 @@ tobii_datas, tobii_binaries, tobii_hidden_imports = collect_all("tobiiresearch")
 datas = [
     (str(repo_root / "assets" / "icon.png"), "assets"),
     (str(repo_root / "gaze_mouse" / "assets" / "checkbox_x.svg"), "gaze_mouse/assets"),
+    (
+        str(repo_root / "gaze_mouse" / "assets" / "bosnian-model.json.gz"),
+        "gaze_mouse/assets",
+    ),
+    (
+        str(repo_root / "gaze_mouse" / "assets" / "bosnian-model.meta.json"),
+        "gaze_mouse/assets",
+    ),
     (str(repo_root / "gaze_mouse" / "__init__.py"), "gaze_mouse"),
     (str(repo_root / "gaze_mouse" / "tobii_stream_engine.py"), "gaze_mouse"),
     (str(repo_root / "gaze_mouse" / "tobii_stream_engine_bridge.py"), "gaze_mouse"),

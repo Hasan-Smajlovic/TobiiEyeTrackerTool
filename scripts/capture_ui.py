@@ -23,6 +23,9 @@ from gaze_mouse.settings_window import SettingsWindow
 from gaze_mouse.speech_library import PhraseRecord, SpeechLibrary, default_categories
 from gaze_mouse.speech_service import SpeechSettings
 from gaze_mouse.speech_window import SpeechWindow
+from gaze_mouse.suggestion_learning import LearningStore
+from gaze_mouse.suggestion_model import WordModel
+from gaze_mouse.suggestion_text import START
 
 
 class PreviewAppBar:
@@ -82,6 +85,56 @@ class PreviewAlarmSound(QObject):
 
     @property
     def last_error(self) -> str | None:
+        return None
+
+
+class PreviewSuggestionService(QObject):
+    predictions_ready = Signal(object, int, object)
+    status_changed = Signal(str)
+    storage_finished = Signal(bool)
+
+    def __init__(self, *_args: object, **_kwargs: object) -> None:
+        super().__init__()
+        self.store = LearningStore()
+        self.store.learn_text("Ćevapi džez kahva ljeto njiva šetnja")
+        self._model = WordModel(
+            {
+                ("selam",): 100,
+                ("ja",): 90,
+                ("kako",): 80,
+                ("može",): 70,
+                ("hvala",): 60,
+                ("želim",): 50,
+                ("vodu",): 40,
+                (START, "selam"): 1000,
+                (START, "ja"): 900,
+                (START, "kako"): 800,
+                (START, "može"): 700,
+                (START, "hvala"): 600,
+                ("želim", "vodu"): 1000,
+            }
+        )
+
+    @property
+    def status(self) -> str:
+        return self.store.error
+
+    def request(self, owner: object, revision: int, text: str) -> None:
+        self.predictions_ready.emit(
+            owner, revision, self._model.predict(text, self.store.snapshot())
+        )
+
+    def persist(self) -> None:
+        return None
+
+    def forget(self, word: str) -> None:
+        self.store.forget(word)
+        self.storage_finished.emit(True)
+
+    def retry(self) -> None:
+        self.storage_finished.emit(True)
+
+    def close(self) -> None:
         return None
 
 
@@ -185,6 +238,7 @@ def capture_ui(output_dir: Path, *, width: int = 1440, height: int = 900) -> lis
         patch.object(toolbar_module, "WindowsAppBar", PreviewAppBar),
         patch.object(toolbar_module, "WindowsInputController", PreviewInput),
         patch.object(toolbar_module, "SpeechService", PreviewSpeech),
+        patch.object(toolbar_module, "SuggestionService", PreviewSuggestionService),
         patch.object(
             toolbar_module, "load_app_settings", return_value=(gaze_settings, speech_settings)
         ),
@@ -208,7 +262,8 @@ def capture_ui(output_dir: Path, *, width: int = 1440, height: int = 900) -> lis
                 )
             )
 
-            settings = SettingsWindow(gaze_settings, speech_settings)
+            suggestions = PreviewSuggestionService()
+            settings = SettingsWindow(gaze_settings, speech_settings, suggestions=suggestions)
             widgets.append(settings)
             for index, name, title in (
                 (0, "settings-general", "Settings: general"),
@@ -219,11 +274,28 @@ def capture_ui(output_dir: Path, *, width: int = 1440, height: int = 900) -> lis
                 snapshots.append(
                     (title, _capture_widget(app, settings, output_dir, name, width, height))
                 )
+            settings._open_learning()
+            snapshots.append(
+                (
+                    "Settings: learned words",
+                    _capture_widget(
+                        app,
+                        settings,
+                        output_dir,
+                        "settings-learned-words",
+                        width,
+                        height,
+                    ),
+                )
+            )
 
+            speech_suggestions = PreviewSuggestionService()
+            speech_suggestions.store = LearningStore()
             speech = SpeechWindow(
                 PreviewSpeech(),
                 library_store=PreviewLibraryStore(sample_phrases),
                 alarm_sound=PreviewAlarmSound(),
+                suggestions=speech_suggestions,
             )
             widgets.append(speech)
             snapshots.append(
@@ -316,21 +388,21 @@ def capture_ui(output_dir: Path, *, width: int = 1440, height: int = 900) -> lis
                 )
             )
             speech._wake_from_sleep()
-            speech._open_exit_confirmation()
+            speech._open_exit_dialog()
             snapshots.append(
                 (
                     "Speech exit confirmation",
                     _capture_widget(
                         app,
-                        speech._confirm_dialog,
+                        speech._exit_dialog,
                         output_dir,
                         "speech-exit",
-                        speech._confirm_dialog.width(),
-                        speech._confirm_dialog.height(),
+                        speech._exit_dialog.width(),
+                        speech._exit_dialog.height(),
                     ),
                 )
             )
-            speech._cancel_confirmation()
+            speech._close_dialog()
 
             sidebar_width = 380
             keyboard = KeyboardWindow(speech_settings)

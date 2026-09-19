@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "model_id": "bs-classla-2.0-conversation-3-v60000-2026-09-19",
+  "source": "CLASSLA-web.bs 2.0",
+  "source_url": "https://www.clarin.si/repository/xmlui/bitstream/handle/11356/2079/CLASSLA-web.bs.2.0.jsonl.gz?isAllowed=y&sequence=11",
+  "source_license": "CC0-1.0",
+  "source_md5": "f92e72f4fe08362a1297f311ac20ad33",
+  "source_sha256": "2b8e8e853e6ca974ef64072b9367d2aa935584c0fcc6e132a965747215af2ada",
+  "supplement_sha256": "ceaec5e0246efc9a8911c84160e8c6b9e374b5d1f8b171c121f6642943924db4",
+  "starters_sha256": "7cfc1eee98e5671a3852f76e484c80c5159dbdb45445bca946ca0b8087b44dd9",
+  "preparation_sha256": "3e7efc0c4d70df726b5bc69803f4d6f5911682c9b2667d2463ad84d4c0a17e21",
+  "model_sha256": "1fcd68c09860a6844ec187f91fb2759f8a4f26eb20dc939d314d7bf39acdb7f5",
+  "sample": {
+    "records_scanned": 2538848,
+    "documents": 20924,
+    "tokens": 5482578,
+    "domains": 1635,
+    "genres": {
+      "News": 3000,
+      "Opinion/Argumentation": 4919,
+      "Information/Explanation": 4968,
+      "Instruction": 3024,
+      "Prose/Lyrical": 1330,
+      "Forum": 3683
+    },
+    "id_hash_modulus": 20,
+    "per_domain_limit": 240,
+    "news_limit": 3000
+  },
+  "supplement": {
+    "rows": 527,
+    "categories": {
+      "care": 57,
+      "comfort": 42,
+      "conversation": 62,
+      "emergency": 35,
+      "family_social": 35,
+      "food_drink": 45,
+      "greetings": 20,
+      "health": 63,
+      "humour": 25,
+      "memories": 30,
+      "needs": 78,
+      "opinions": 35
+    },
+    "weighted_rows": {
+      "care": 456,
+      "comfort": 294,
+      "conversation": 190,
+      "emergency": 350,
+      "family_social": 105,
+      "food_drink": 270,
+      "greetings": 60,
+      "health": 504,
+      "humour": 50,
+      "memories": 60,
+      "needs": 554,
+      "opinions": 70
+    },
+    "starters": 52
+  },
+  "configuration": {
+    "maximum_vocabulary": 60000,
+    "minimum_word_count": 5,
+    "minimum_ngram_count": 3,
+    "per_context_limit": 32,
+    "per_ngram_order_limit": 160000,
+    "supplement_multiplier": 40,
+    "starter_multiplier": 200
+  },
+  "counts": {
+    "words": 60000,
+    "bigrams": 125342,
+    "trigrams": 103788
+  },
+  "compressed_bytes": 1348957
+}

@@ -18,6 +18,9 @@ run_gaze_mouse.py
        -> GazeMouseController
             -> WindowsInputController
        -> SpeechService
+       -> SuggestionService
+            -> bundled Bosnian model
+            -> local personal learning
        -> Settings, Speech, Keyboard, and Controller windows
        -> gaze bubble, interaction overlay, precision zoom, and Quick actions
        -> WindowsAppBar
@@ -41,7 +44,8 @@ AppBar reservation during shutdown.
 | User surfaces | `gaze_mouse/*_window.py`, `gaze_mouse/quick_action_*.py` | Settings, speech, keyboard, controller, radial menu, precision zoom |
 | Feedback | `gaze_mouse/gaze_bubble.py`, `gaze_mouse/interaction_overlay.py`, `gaze_mouse/gaze_feedback.py` | Gaze position and dwell progress shown without taking focus |
 | Speech | `gaze_mouse/speech_service.py`, `gaze_mouse/speech_window.py`, `gaze_mouse/speech_library.py`, `gaze_mouse/alarm_sound.py` | eSpeak NG and Edge playback, text entry, saved categories, answers and phrases, and the repeating local alarm |
-| Persistent data | `gaze_mouse/settings_store.py`, `gaze_mouse/logging_setup.py` | Settings, phrase data root, logs, safe defaults |
+| Suggestions | `gaze_mouse/suggestion_*.py`, `gaze_mouse/assets/bosnian-model.*` | Offline Bosnian tokenisation, completion and next-word ranking, input-scoped undo, and reversible personal learning |
+| Persistent data | `gaze_mouse/settings_store.py`, `gaze_mouse/suggestion_learning.py`, `gaze_mouse/logging_setup.py` | Settings, phrase and personal-learning data, logs, safe defaults, and atomic writes |
 | Distribution | `setup_windows.ps1`, `start_gaze_mouse.ps1`, `update_windows.ps1`, `packaging/`, `scripts/` | Source setup, launch, verified release update, package build, install, release |
 | Verification | `dev.ps1`, `tests/`, `.github/workflows/` | Local checks, simulated hardware inputs, UI flows, CI, release checks |
 
@@ -86,8 +90,13 @@ and Controller panels are mutually exclusive. Feedback windows remain topmost
 without taking focus from the application the user is controlling.
 
 Settings changes update the live mouse and speech services and are saved
-immediately. Closing the hotbar closes every child surface, stops speech and gaze
-workers, and unregisters the AppBar so Windows restores the full work area.
+immediately. `SuggestionService` is also owned by the hotbar and shared by Speech
+and Settings. It loads and queries the immutable base model away from the Qt event
+loop, coalesces pending requests, and writes personal counts through a separate
+worker. The Speech input validates the request owner, revision, text, caret, and
+selection before displaying a result. Closing the hotbar closes every child
+surface, flushes suggestion learning, stops speech and gaze workers, and
+unregisters the AppBar so Windows restores the full work area.
 
 ## Persistent data and logs
 
@@ -99,6 +108,7 @@ override it for controlled launch and test scenarios.
 data/app_settings.json   gaze, interaction, startup, logging, and speech settings
 data/speech_library.json saved categories, answers, phrases, and phrase use counts
 data/speech_phrases.json rollback-compatible standalone phrases for older releases
+data/speech_learning.json versioned local word and short-context counts
 logs/latest.txt          current application log when logging is enabled
 ```
 
@@ -106,12 +116,19 @@ Missing or malformed settings fall back safely to defaults, with supported
 values clamped to the same ranges as the Settings UI. Installation, update, and
 rollback work must preserve `data/` and `logs/`.
 
+The bundled suggestion model and writable learning profile have independent
+version 1 schemas. A base-model release can therefore be replaced without
+rewriting personal counts. An unreadable personal profile is reported and kept
+unchanged until an explicit retry can merge new in-memory learning with readable
+disk data.
+
 ## Packaging and installation
 
 `dev.ps1` is the developer entry point. The PyInstaller specification under
-`packaging/windows/` builds the frozen application and includes the icons and
-bridge files needed at runtime. The release package contains its own installer
-and launcher and installs under `C:\PogledAssist`.
+`packaging/windows/` builds the frozen application and includes the icons, bridge
+files, and versioned Bosnian model needed at runtime. The package smoke test
+loads that model and computes an offline prediction. The release package contains
+its own installer and launcher and installs under `C:\PogledAssist`.
 
 `update_windows.ps1` reads the installed version, resolves the latest stable
 release from `Hasan-Smajlovic/TobiiEyeTrackerTool`, downloads the exact Windows

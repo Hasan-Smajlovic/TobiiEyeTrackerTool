@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "letters_per_group": 5,
+  "profile": "empty per message",
+  "selection_policy": "first exact beneficial candidate",
+  "sha256": {
+    "development.tsv": "1aa3659e62e293dde6a3dfd4084aa3e313ed91fa6739a9c44775ee47f587f96f",
+    "heldout.tsv": "1f0a660b84433f639396c3792a409c84ba159f421c786967162328b4f483338f",
+    "protocol.md": "cc9344c7cf0f7f4dc31e987cb7d5ec65d3fae48b0e6af36590e12d36645539a6"
+  }
+}
